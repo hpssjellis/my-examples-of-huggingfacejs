@@ -1,5 +1,5 @@
 <body>
-  version 0.0.1<br>
+  version 0.0.2-2<br>
   View the console ctrl-shift-i<br>
     <script type="module">
         import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
@@ -111,28 +111,28 @@ await hf.featureExtraction({
 
 await hf.automaticSpeechRecognition({
   model: 'facebook/wav2vec2-large-960h-lv60-self',
-  data: readFileSync('test/sample1.flac')
+  data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac')
 })
 
 await hf.audioClassification({
   model: 'superb/hubert-large-superb-er',
-  data: readFileSync('test/sample1.flac')
+  data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac')
 })
 
 // Computer Vision
 
 await hf.imageClassification({
-  data: readFileSync('test/cheetah.png'),
+  data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cheetah.png'),
   model: 'google/vit-base-patch16-224'
 })
 
 await hf.objectDetection({
-  data: readFileSync('test/cats.png'),
+  data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png'),
   model: 'facebook/detr-resnet-50'
 })
 
 await hf.imageSegmentation({
-  data: readFileSync('test/cats.png'),
+  data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png'),
   model: 'facebook/detr-resnet-50-panoptic'
 })
 
