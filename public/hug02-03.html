@@ -65,7 +65,7 @@ await hf.questionAnswer({
 
    */       
 
-await hf.tableQuestionAnswer({
+const objectDetectionRes = await hf.tableQuestionAnswer({
   model: 'google/tapas-base-finetuned-wtq',
   inputs: {
     query: 'How many stars does the transformers repository have?',
