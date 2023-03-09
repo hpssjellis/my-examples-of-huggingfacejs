@@ -144,7 +144,7 @@ await hf.audioClassification({
 // Computer Vision
 */
 const objectDetectionRes = await hf.imageClassification({
-  data: await readFileSync('./test/cheetah.png'),
+  data: readFileSync('./test/cheetah.png'),
   model: 'google/vit-base-patch16-224'
 })
 /*
