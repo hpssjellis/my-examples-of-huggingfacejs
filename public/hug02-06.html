@@ -90,7 +90,7 @@ await hf.textGeneration({
   inputs: 'The answer to the universe is'
 })
      */
-await hf.tokenClassification({
+const objectDetectionRes = await hf.tokenClassification({
   model: 'dbmdz/bert-large-cased-finetuned-conll03-english',
   inputs: 'My name is Sarah Jessica Parker but you can call me Jessica'
 })
