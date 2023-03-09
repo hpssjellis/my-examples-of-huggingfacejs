@@ -151,7 +151,7 @@ await hf.imageClassification({
 
 */
 const objectDetectionRes = await hf.objectDetection({
-  data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png'),
+  data: readFileSync('./test/cats.png'),
   model: 'facebook/detr-resnet-50'
 })
 /*
