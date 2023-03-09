@@ -100,7 +100,7 @@ await hf.translation({
   inputs: 'My name is Wolfgang and I live in Berlin'
 })
 */
-await hf.zeroShotClassification({
+const objectDetectionRes = await hf.zeroShotClassification({
   model: 'facebook/bart-large-mnli',
   inputs: [
     'Hi, I recently bought a device from your company but it is not working as advertised and I would like to get reimbursed!'
