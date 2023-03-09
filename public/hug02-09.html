@@ -89,12 +89,12 @@ await hf.textGeneration({
   model: 'gpt2',
   inputs: 'The answer to the universe is'
 })
-     */
+     
 await hf.tokenClassification({
   model: 'dbmdz/bert-large-cased-finetuned-conll03-english',
   inputs: 'My name is Sarah Jessica Parker but you can call me Jessica'
 })
-/*
+
 await hf.translation({
   model: 't5-base',
   inputs: 'My name is Wolfgang and I live in Berlin'
@@ -107,7 +107,7 @@ await hf.zeroShotClassification({
   ],
   parameters: { candidate_labels: ['refund', 'legal', 'faq'] }
 })
-
+*/
 await hf.conversational({
   model: 'microsoft/DialoGPT-large',
   inputs: {
@@ -116,7 +116,7 @@ await hf.conversational({
     text: 'Can you explain why ?'
   }
 })
-
+/*
 await hf.featureExtraction({
   model: 'sentence-transformers/paraphrase-xlm-r-multilingual-v1',
   inputs: {
