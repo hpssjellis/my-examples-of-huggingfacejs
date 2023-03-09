@@ -150,8 +150,11 @@ await hf.imageClassification({
 
 
 */
+        
+ const imgBlob = await fetch("https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png")
+     .then((res) => res.blob())                   
 const objectDetectionRes = await hf.objectDetection({
-  data: readFileSync('./test/cats.png'),
+  data: imgBlob,
   model: 'facebook/detr-resnet-50'
 })
 /*
