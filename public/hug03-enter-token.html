@@ -1,7 +1,7 @@
 <html>
   <head>
      <script type="module">
-      import { document.HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
+      import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
       document.HfInference = HfInference   // bad coding but I need HfInference to be global
      </script>
     
@@ -22,7 +22,7 @@
   
   </head> 
   <body>
-    version 0.2.2-8<br>
+    version 0.2.2-9<br>
     View the console at ctrl-shift-i (for window or linux)<br>
     <input id="myEnteredToken" type=password size=50>
     <input type=button value="load and run"onclick="{
