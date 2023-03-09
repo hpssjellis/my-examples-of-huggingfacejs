@@ -1,0 +1,54 @@
+<html>
+  <head>
+     <script type="module">
+      import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
+      document.HfInference = HfInference   // bad coding but I need HfInference to be global
+     </script>
+    
+    <script>
+     myHugginFaceFun = async function(mySentToken){ 
+        let hf = new document.HfInference(mySentToken)
+
+        const imgBlob = await fetch('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png')
+            .then((res) => res.blob())
+        const objectDetectionRes = await hf.objectDetection({
+            data: imgBlob,
+            model: "facebook/detr-resnet-50"
+        })
+        document.getElementById('myDiv01').innerHTML = objectDetectionRes
+       }
+       
+    </script>
+  
+  </head> 
+<body onload="{
+   myStorage = localStorage.getItem('myStoredToken')
+   if(myStorage  != null){
+      document.getElementById('myEnteredToken').value = myStorage 
+    }
+}">
+version 0.2.3-10<br>
+Output in the div below. Works without personal token just stops after about 20 refreshes per hour
+<input id="myEnteredToken" type=password size=50>
+<input type="button" value="Store Token Locally" onClick="{
+   localStorage.setItem('myStoredToken', document.getElementById('myEnteredToken').value)
+   document.getElementById('myDiv01').innerHTML = 'Latest Token has been stored containing these last 4 character: " +
+       document.getElementById('myEnteredToken').value.slice(-4)
+}">
+   
+<input type=button value="load and run"onclick="{
+    myHugginFaceFun(document.getElementById('myEnteredToken').value)                                            
+
+}">
+  
+<input type=button value="test  console"onclick="{
+
+    console.log('docuemnt.HfInference')              
+    console.log(document.HfInference)                                                   
+
+}">
+  
+  <div id="myDiv01">...</div>  
+
+</body>
+</html>
