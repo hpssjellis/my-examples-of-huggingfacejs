@@ -55,7 +55,7 @@ await hf.summarization({
       
       
       
-await hf.questionAnswer({
+const objectDetectionRes = await hf.questionAnswer({
   model: 'deepset/roberta-base-squad2',
   inputs: {
     question: 'What is the capital of France?',
