@@ -117,7 +117,7 @@ await hf.conversational({
   }
 })
 */
-await hf.featureExtraction({
+const objectDetectionRes = await hf.featureExtraction({
   model: 'sentence-transformers/paraphrase-xlm-r-multilingual-v1',
   inputs: {
     source_sentence: 'That is a happy person',
