@@ -1,13 +1,13 @@
 <html>
   <head>
      <script type="module">
-      import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
+      import { document.HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
 
      </script>
     
     <script>
      myHugginFaceFun = async function(mySentToken){ 
-        let hf = new window.HfInference(mySentToken)
+        let hf = new document.HfInference(mySentToken)
 
         const imgBlob = await fetch('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png')
             .then((res) => res.blob())
@@ -22,7 +22,7 @@
   
   </head> 
   <body>
-    version 0.2.2-7<br>
+    version 0.2.2-8<br>
     View the console at ctrl-shift-i (for window or linux)<br>
     <input id="myEnteredToken" type=password size=50>
     <input type=button value="load and run"onclick="{
@@ -30,10 +30,9 @@
                                                     
     }">
         <input type=button value="test  console"onclick="{
-        console.log('HfInference')                         
-        console.log(HfInference)                 
-        console.log('window.HfInference')              
-        console.log(window.HfInference)                                                   
+               
+        console.log('docuemnt.HfInference')              
+        console.log(document.HfInference)                                                   
                                                     
     }">
 
