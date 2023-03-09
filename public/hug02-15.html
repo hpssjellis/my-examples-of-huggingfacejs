@@ -157,7 +157,7 @@ await hf.objectDetection({
 
 */
 const objectDetectionRes = await hf.imageSegmentation({
-  data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png'),
+  data: readFileSync('./test/cats.png'),
   model: 'facebook/detr-resnet-50-panoptic'
 })
 /*
