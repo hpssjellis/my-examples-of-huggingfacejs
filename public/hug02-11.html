@@ -136,7 +136,7 @@ await hf.automaticSpeechRecognition({
   data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac')
 })
 */
-await hf.audioClassification({
+const objectDetectionRes = await hf.audioClassification({
   model: 'superb/hubert-large-superb-er',
   data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac')
 })
