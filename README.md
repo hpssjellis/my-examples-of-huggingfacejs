@@ -17,7 +17,7 @@ https://hpssjellis.github.io/my-examples-of-huggingfacejs/public/index.html
 .
 
 
-
+The hugginface javascript repo is at https://github.com/huggingface/huggingface.js
 
 .
 
