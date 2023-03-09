@@ -131,9 +131,12 @@ await hf.featureExtraction({
 
 // Audio
 */
+        
+const soundBlob = await fetch("https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac")
+            .then((res) => res.blob())  
 await hf.automaticSpeechRecognition({
   model: 'facebook/wav2vec2-large-960h-lv60-self',
-  data: await fetch('.test/sample1.flac')
+  data: soundBlob
 })
 /*
 const objectDetectionRes = await hf.audioClassification({
