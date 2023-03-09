@@ -94,12 +94,12 @@ await hf.tokenClassification({
   model: 'dbmdz/bert-large-cased-finetuned-conll03-english',
   inputs: 'My name is Sarah Jessica Parker but you can call me Jessica'
 })
-*/
+
 await hf.translation({
   model: 't5-base',
   inputs: 'My name is Wolfgang and I live in Berlin'
 })
-/*
+
 await hf.zeroShotClassification({
   model: 'facebook/bart-large-mnli',
   inputs: [
@@ -135,12 +135,12 @@ await hf.automaticSpeechRecognition({
   model: 'facebook/wav2vec2-large-960h-lv60-self',
   data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac')
 })
-
+*/
 await hf.audioClassification({
   model: 'superb/hubert-large-superb-er',
   data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac')
 })
-
+/*
 // Computer Vision
 
 await hf.imageClassification({
