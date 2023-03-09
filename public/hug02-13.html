@@ -143,7 +143,7 @@ await hf.audioClassification({
 
 // Computer Vision
 */
-await hf.imageClassification({
+const objectDetectionRes = await hf.imageClassification({
   data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cheetah.png'),
   model: 'google/vit-base-patch16-224'
 })
