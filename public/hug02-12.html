@@ -138,7 +138,7 @@ await hf.automaticSpeechRecognition({
 */
 const objectDetectionRes = await hf.audioClassification({
   model: 'superb/hubert-large-superb-er',
-  data: await fetch('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac')
+  data: await readFileSync('./test/sample1.flac')
 })
 /*
 // Computer Vision
