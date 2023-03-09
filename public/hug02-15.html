@@ -157,7 +157,7 @@ await hf.objectDetection({
 
 */
 const objectDetectionRes = await hf.imageSegmentation({
-  data: await fetch('test/cats.png'),
+  data: await fetch('.test/cats.png'),
   model: 'facebook/detr-resnet-50-panoptic'
 })
 /*
