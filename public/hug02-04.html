@@ -80,7 +80,7 @@ await hf.tableQuestionAnswer({
 
    */   
                   
-await hf.textClassification({
+const objectDetectionRes = await hf.textClassification({
   model: 'distilbert-base-uncased-finetuned-sst-2-english',
   inputs: 'I like you. I love you.'
 })
