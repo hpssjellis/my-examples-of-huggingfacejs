@@ -1,6 +1,6 @@
 # my-examples-of-huggingfacejs
 
-
+Connecting to the hugginface github at https://github.com/huggingface/huggingface.js
 
 This is my demo index of the examples in the public folder:
 
