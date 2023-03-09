@@ -85,7 +85,7 @@ await hf.textClassification({
   inputs: 'I like you. I love you.'
 })
       */            
-await hf.textGeneration({
+const objectDetectionRes = await hf.textGeneration({
   model: 'gpt2',
   inputs: 'The answer to the universe is'
 })
