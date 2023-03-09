@@ -95,7 +95,7 @@ await hf.tokenClassification({
   inputs: 'My name is Sarah Jessica Parker but you can call me Jessica'
 })
 */
-await hf.translation({
+const objectDetectionRes = await hf.translation({
   model: 't5-base',
   inputs: 'My name is Wolfgang and I live in Berlin'
 })
