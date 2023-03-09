@@ -2,8 +2,36 @@
 
 <li><a href="https://github.com/hpssjellis/my-examples-of-huggingfacejs">This github at https://github.com/hpssjellis/my-examples-of-huggingfacejs</a>
 <li><a href="https://hpssjellis.github.io/my-examples-of-huggingfacejs/public/index.html">This website index full link at<br> https://hpssjellis.github.io/my-examples-of-huggingfacejs/public/index.html</a>
+
+  Watvh out for limits. Basically on a small model I am getting about 20 web page  and then I need a one hour gap.
   
-  <hr>
+Based on this code<br>
+<pre>
+<html>
+  <body>
+    version 0.0.1<br>
+    View the console at ctrl-shift-i (for window or linux)<br>
+    <script type="module">
+        import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
+        const TOKEN = ""
+        let hf = new HfInference(TOKEN)
+
+        const imgBlob = await fetch("https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png")
+            .then((res) => res.blob())
+        const objectDetectionRes = await hf.objectDetection({
+            data: imgBlob,
+            model: "facebook/detr-resnet-50"
+        })
+        console.log(objectDetectionRes)
+    </script>
+  </body>
+</html>  
+  
+</pre>  
+<br>
+<br>
+  
+
 <li><a href="hug01.html">hug01.html</a> First working HuggingFaceJS see console. This does an image classification so I should be find with those.
 <li><a href="hug02.html">hug02.html</a> Trying the <a href="https://github.com/huggingface/huggingface.js/blob/main/packages/inference/README.md">inference examples</a> and massively messing up the free rate limit. LOL
 <li><a href="...">..</a>
