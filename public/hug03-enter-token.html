@@ -1,8 +1,8 @@
 <html>
   <head>
      <script type="module">
-        import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
-        //const TOKEN = ""
+      import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
+
      </script>
     
     <script>
@@ -27,6 +27,10 @@
     <input id="myEnteredToken" type=password size=50>
     <input type=button value="load and run"onclick="{
         myHugginFaceFun(document.getElementById('myEnteredToken').value)                                            
+                                                    
+    }">
+        <input type=button value="test"onclick="{
+        console.log(HfInference)                                         
                                                     
     }">
 
