@@ -130,18 +130,18 @@ await hf.featureExtraction({
 })
 
 // Audio
-
+*/
 await hf.automaticSpeechRecognition({
   model: 'facebook/wav2vec2-large-960h-lv60-self',
-  data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac')
+  data: await fetch('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac')
 })
-*/
+/*
 const objectDetectionRes = await hf.audioClassification({
   model: 'superb/hubert-large-superb-er',
  // data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac')
   data: await fetch('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac')
 })
-/*
+
 // Computer Vision
 
 await hf.imageClassification({
