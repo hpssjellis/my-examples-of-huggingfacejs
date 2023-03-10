@@ -62,9 +62,11 @@ Output in the div below. Works without personal token just stops after about 20 
 
     console.log('document.myHf')              
     console.log(document.myHf)  
+    document.getElementById('myDiv01').innerHTML = ''
                                                            
     for (const key of Object.getOwnPropertyNames(Object.getPrototypeOf(document.myHf))) {
-       console.log(key, typeof document.myHf[key], document.myHf[key]);
+       //console.log(key, typeof document.myHf[key], document.myHf[key]);
+       document.getElementById('myDiv01').innerHTML += 'key: ' + key + ', typeof: " +  typeof document.myHf[key] + ', document.myHf[key]: ' +    document.myHf[key]  + '<br>'                                             
     }                                                      
                                                            
                                                            
@@ -83,17 +85,8 @@ Output in the div below. Works without personal token just stops after about 20 
                                                                    
    */
 }">
-<input type=button value="Show document.myHf"onclick="{
 
-    console.log('document.myHf')              
-    console.log(document.myHf)  
-     
-    document.getElementById('myDiv01').innerHTML = document.myHf
-    //document.getElementById('myDiv01').innerHTML = JSON.stringify(document.myHf) 
-   // document.getElementById('myDiv01').innerHTML = document.HfInference.request  
 
-}">
-  <textarea id="myText01">..</textarea><br>
   <div id="myDiv01">...</div> 
   <br><br>
   
