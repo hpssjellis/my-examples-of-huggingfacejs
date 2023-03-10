@@ -1,0 +1,98 @@
+<html>
+  <head>
+     <script type="module">
+      import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
+      document.HfInference = HfInference   // bad coding but I need HfInference to be global
+     </script>
+    
+    <script>
+     myHugginFaceFun = async function(mySentToken){ 
+        let hf = new document.HfInference(mySentToken)
+        document.myHf = hf  // let this be global, also kind of bad prrogramming
+
+        const imgBlob = await fetch('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png')
+            .then((res) => res.blob())
+        const objectDetectionRes = await hf.objectDetection({
+            data: imgBlob,
+            model: "facebook/detr-resnet-50"
+        })
+        
+        console.log('objectDetectionRes')
+        console.log(objectDetectionRes)
+        console.log('objectDetectionRes[0].label')
+        console.log(objectDetectionRes[0].label)
+       // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
+        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
+                 function (key, value) {
+                     if (key == "}") {
+                        return "<br>";
+                     }  else {
+                        return value;
+                     }
+                  })
+       
+     }  
+    </script>
+  
+  </head> 
+<body onload="{
+   myStorage = localStorage.getItem('myStoredToken')
+   if(myStorage  != null){
+      document.getElementById('myEnteredToken').value = myStorage 
+    }
+}">
+version 0.3.1-26<br>
+  <h2 align=center> Testing HuggingFaceJS</h2>
+Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
+  
+<input id="myEnteredToken" type=password size=30>
+<input type="button" value="Store Token Locally" onClick="{
+   localStorage.setItem('myStoredToken', document.getElementById('myEnteredToken').value)
+   document.getElementById('myDiv01').innerHTML = 'Latest Token has been stored containing these last 4 characters: ' +
+       document.getElementById('myEnteredToken').value.slice(-4)
+}">Note: Delete and save blank token to return to regular rate.<br><br>
+   
+<input type=button value="LOAD and Run Model"onclick="{
+    myHugginFaceFun(document.getElementById('myEnteredToken').value)                                            
+
+}"><br><br>
+  
+<input type=button value="stringify document.myHf"onclick="{
+
+
+    console.log('document.myHf')              
+    console.log(document.myHf)  
+    document.getElementById('myDiv01').innerHTML = ''
+                                                           
+    for (const key of Object.getOwnPropertyNames(Object.getPrototypeOf(document.myHf))) {
+       //console.log(key, typeof document.myHf[key], document.myHf[key]);
+       document.getElementById('myDiv01').innerHTML += 'Key: ' + key + ', typeof: ' +  typeof document.myHf[key] +
+              ', document.myHf[key]: ' +    document.myHf[key]  + '<br><br>'                                             
+    }                                                      
+                                                           
+                                                           
+     
+   // document.getElementById('myText01').value = document.myHf
+    /*                                                         
+                                                        
+    document.getElementById('myDiv01').innerHTML = JSON.stringify(document.getElementById('myText01').value , 
+                 function (key, value) {
+                     if (key == '}') {
+                        return '<br>';
+                     }  else {
+                        return value;
+                     }
+                  })
+                                                                   
+   */
+}">
+
+
+  <div id="myDiv01">...</div> 
+  <br><br>
+  
+  My Main Github <a href="https://github.com/hpssjellis/my-examples-of-huggingfacejs">here</a> and the index of demos <a href="index.html">here<a/>  <br>
+  By <a href="https://twitter.com/rocksetta">@rocksetta<a/> use at your own risk!<br>
+
+</body>
+</html>
