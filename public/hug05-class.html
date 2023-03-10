@@ -42,16 +42,17 @@
     }
 }">
 version 0.3.1-20<br>
+  <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 refreshes per hour
   
-<input id="myEnteredToken" type=password size=50>
+<input id="myEnteredToken" type=password size=30>
 <input type="button" value="Store Token Locally" onClick="{
    localStorage.setItem('myStoredToken', document.getElementById('myEnteredToken').value)
    document.getElementById('myDiv01').innerHTML = 'Latest Token has been stored containing these last 4 characters: ' +
        document.getElementById('myEnteredToken').value.slice(-4)
-}"><br>
+}">Note: Delete and save blank token to return to regular rate.<br>
    
-<input type=button value="load Model and run"onclick="{
+<input type=button value="LOAD and Run Model"onclick="{
     myHugginFaceFun(document.getElementById('myEnteredToken').value)                                            
 
 }"><br><br>
