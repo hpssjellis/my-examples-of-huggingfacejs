@@ -66,7 +66,8 @@ Output in the div below. Works without personal token just stops after about 20 
                                                            
     for (const key of Object.getOwnPropertyNames(Object.getPrototypeOf(document.myHf))) {
        //console.log(key, typeof document.myHf[key], document.myHf[key]);
-       document.getElementById('myDiv01').innerHTML += 'Key: ' + key + ', typeof: ' +  typeof document.myHf[key] + ', document.myHf[key]: ' +    document.myHf[key]  + '<br>'                                             
+       document.getElementById('myDiv01').innerHTML += 'Key: ' + key + ', typeof: ' +  typeof document.myHf[key] +
+              ', document.myHf[key]: ' +    JSON.stringify(document.myHf[key])  + '<br><br>'                                             
     }                                                      
                                                            
                                                            
