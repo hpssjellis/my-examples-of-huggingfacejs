@@ -39,8 +39,9 @@
      myImageLoad = async function(myEnteredImageURL){  
         const myImg = document.getElementById(myEnteredImageURL);
 
-        const myImageBlob = await fetch(document.getElementById('myDataOrImage').value)
-        const myImageBase64 = URL.createObjectURL(myImageBlob) 
+        const myResponse = await fetch(document.getElementById('myDataOrImage').value)
+        const myBlob = await myResponse.blob()
+        const myImageBase64 = URL.createObjectURL(myBlob) 
         myImg.src  =   myImageBase64       
       }
     </script>
@@ -52,7 +53,7 @@
       document.getElementById('myEnteredToken').value = myStorage 
     }
 }">
-version 0.3.3-33<br>
+version 0.3.3-34<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
