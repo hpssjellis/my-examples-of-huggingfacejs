@@ -90,35 +90,6 @@ Output in the div below. Works without personal token just stops after about 20 
 
 }"><br><br>
   
-<input type=button value="stringify document.myHf"onclick="{
-
-
-    console.log('document.myHf')              
-    console.log(document.myHf)  
-    document.getElementById('myDiv01').innerHTML = ''
-                                                           
-    for (const key of Object.getOwnPropertyNames(Object.getPrototypeOf(document.myHf))) {
-       //console.log(key, typeof document.myHf[key], document.myHf[key]);
-       document.getElementById('myDiv01').innerHTML += 'Key: ' + key + ', typeof: ' +  typeof document.myHf[key] +
-              ', document.myHf[key]: ' +    document.myHf[key]  + '<br><br>'                                             
-    }                                                      
-                                                           
-                                                           
-     
-   // document.getElementById('myText01').value = document.myHf
-    /*                                                         
-                                                        
-    document.getElementById('myDiv01').innerHTML = JSON.stringify(document.getElementById('myText01').value , 
-                 function (key, value) {
-                     if (key == '}') {
-                        return '<br>';
-                     }  else {
-                        return value;
-                     }
-                  })
-                                                                   
-   */
-}">
 
 
   <div id="myDiv01">...</div> 
