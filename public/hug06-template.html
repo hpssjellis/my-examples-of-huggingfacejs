@@ -53,7 +53,7 @@
       document.getElementById('myEnteredToken').value = myStorage 
     }
 }">
-version 0.3.3-35<br>
+version 0.3.3-36<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
@@ -69,7 +69,8 @@ Load the URL of the image to Analyse:<br>
   
 <input id="myDataOrImage" type=text value="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" size=100  placeholder="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" >
 <input type=button value="Load Data/Image" onclick="{
-  myImageLoad('myDataOrImage') 
+ // myImageLoad('myDataOrImage') 
+  document.getElementById('myDataDisplay').src = document.getElementById('myDataOrImage').value
                                                     
 /*     
    //.then(r => r.json())
