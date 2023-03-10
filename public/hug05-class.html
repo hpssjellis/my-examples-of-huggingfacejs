@@ -41,7 +41,7 @@
       document.getElementById('myEnteredToken').value = myStorage 
     }
 }">
-version 0.3.1-23<br>
+version 0.3.1-24<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
@@ -64,7 +64,7 @@ Output in the div below. Works without personal token just stops after about 20 
     console.log(document.myHf)  
                                                            
     for (const key of Object.getOwnPropertyNames(Object.getPrototypeOf(document.myHf))) {
-       console.log(key, typeof hf[key], hf[key]);
+       console.log(key, typeof document.myHf[key], document.myHf[key]);
     }                                                      
                                                            
                                                            
@@ -89,7 +89,7 @@ Output in the div below. Works without personal token just stops after about 20 
     console.log(document.myHf)  
      
     document.getElementById('myDiv01').innerHTML = document.myHf
-    document.getElementById('myDiv01').innerHTML = JSON.stringify(document.myHf) 
+    //document.getElementById('myDiv01').innerHTML = JSON.stringify(document.myHf) 
    // document.getElementById('myDiv01').innerHTML = document.HfInference.request  
 
 }">
