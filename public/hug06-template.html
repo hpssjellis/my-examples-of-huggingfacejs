@@ -6,10 +6,10 @@
      </script>
     
     <script>
-     myHugginFaceFun = async function(mySentToken){ 
+     myHugginFaceLoad = async function(mySentToken){ 
         let hf = new document.HfInference(mySentToken)
         document.myHf = hf  // let this be global, also kind of bad prrogramming
-
+        
         const imgBlob = await fetch('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png')
             .then((res) => res.blob())
         const objectDetectionRes = await hf.objectDetection({
@@ -32,6 +32,35 @@
                   })
        
      }  
+      
+      myHugginFaceReTest = async function(){ 
+       // let hf = new document.HfInference(mySentToken)
+       // document.myHf = hf  // let this be global, also kind of bad prrogramming
+        
+        const imgBlob = await fetch('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png')
+            .then((res) => res.blob())
+        const objectDetectionRes = await document.hf.objectDetection({
+            data: imgBlob
+        })
+        
+        console.log('objectDetectionRes')
+        console.log(objectDetectionRes)
+        console.log('objectDetectionRes[0].label')
+        console.log(objectDetectionRes[0].label)
+       // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
+        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
+                 function (key, value) {
+                     if (key == "}") {
+                        return "<br>";
+                     }  else {
+                        return value;
+                     }
+                  })
+       
+     }       
+      
+      
+      
     </script>
   
   </head> 
@@ -52,8 +81,11 @@ Output in the div below. Works without personal token just stops after about 20 
        document.getElementById('myEnteredToken').value.slice(-4)
 }">Note: Delete and save blank token to return to regular rate.<br><br>
    
-<input type=button value="LOAD and Run Model"onclick="{
-    myHugginFaceFun(document.getElementById('myEnteredToken').value)                                            
+<input type=button value="LOAD and Test Model"onclick="{
+    myHugginFaceLoad(document.getElementById('myEnteredToken').value)                                            
+
+}"><input type=button value="re-Classify"onclick="{
+   myHugginFaceReTest()                                          
 
 }"><br><br>
   
