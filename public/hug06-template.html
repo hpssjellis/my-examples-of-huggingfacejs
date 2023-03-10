@@ -21,6 +21,8 @@
         console.log(objectDetectionRes)
         console.log('objectDetectionRes[0].label')
         console.log(objectDetectionRes[0].label)
+       
+        document.myObjDetect = objectDetectionRes   // make it global
        // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
         document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
                  function (key, value) {
@@ -45,7 +47,7 @@
       document.getElementById('myEnteredToken').value = myStorage 
     }
 }">
-version 0.3.3-30<br>
+version 0.3.3-31<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
@@ -57,17 +59,23 @@ Note: Delete and save a blank token to return to the regular rate.<br><br>
        document.getElementById('myEnteredToken').value.slice(-4)
 }"><br>
   
-Load the URL of the image to Analyse:  
+Load the URL of the image to Analyse:<br>  
   
-<input id="myDataOrImage" type=text value="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" size=70  placeholder="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" ><input type=button value="Load Data/Image" onclick="{
-  alert()
-  }" > <br> <div id="myDataDisplay">...</div><br>
+<input id="myDataOrImage" type=text value="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" size=100  placeholder="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" >
+<input type=button value="Load Data/Image" onclick="{
+   const myImg = document.getElementById('myDataDisplay');
+
+   fetch(document.getElementById('myDataOrImage').value)
+   .then(r => r.json())
+   .then(r => myImg.src = r.primaryImage);
+}" > <br> <div id="myDataDisplay">...</div><br>
   
   <a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="facebook/detr-resnet-50" placeholder="facebook/detr-resnet-50">  
   
    
 <input type=button value="LOAD and Test Model"onclick="{
-    myHugginFaceLoad(document.getElementById('myEnteredToken').value,document.getElementById('myDataOrImage').value,document.getElementById('myModel').value )                                            
+    myHugginFaceLoad(document.getElementById('myEnteredToken').value,document.getElementById('myDataOrImage').value,document.getElementById('myModel').value ) 
+                                                       
 }"><br><br>
   
 
