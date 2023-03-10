@@ -40,7 +40,8 @@
         const imgBlob = await fetch('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png')
             .then((res) => res.blob())
         const objectDetectionRes = await document.hf.objectDetection({
-            data: imgBlob
+            data: imgBlob,
+            model: "facebook/detr-resnet-50"
         })
         
         console.log('objectDetectionRes')
