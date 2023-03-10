@@ -57,16 +57,16 @@ Output in the div below. Works without personal token just stops after about 20 
 
 }"><br><br>
   
-<input type=button value="Show document.myHf"onclick="{
+<input type=button value="stringify document.myHf"onclick="{
 
 
     console.log('document.myHf.defaultOptions')              
     console.log(document.myHf.defaultOptions)  
      
-    docuemnt.getElementById('myText01').value = document.myHf
+    document.getElementById('myText01').value = document.myHf
                                                              
                                                         
-    document.getElementById('myDiv01').innerHTML = JSON.stringify(docuemnt.getElementById('myText01').value , 
+    document.getElementById('myDiv01').innerHTML = JSON.stringify(document.getElementById('myText01').value , 
                  function (key, value) {
                      if (key == '}') {
                         return '<br>';
@@ -77,12 +77,12 @@ Output in the div below. Works without personal token just stops after about 20 
                                                                    
 
 }">
-<input type=button value="Show document.myHf.Args"onclick="{
+<input type=button value="Show document.myHf"onclick="{
 
-    console.log('document.myHf.Args')              
-    console.log(document.myHf.Args)  
+    console.log('document.myHf')              
+    console.log(document.myHf)  
      
-    document.getElementById('myDiv01').innerHTML = JSON.stringify(document.myHf.Args) 
+    document.getElementById('myDiv01').innerHTML = JSON.stringify(document.myHf) 
    // document.getElementById('myDiv01').innerHTML = document.HfInference.request  
 
 }">
