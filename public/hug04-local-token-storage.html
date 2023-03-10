@@ -15,9 +15,21 @@
             data: imgBlob,
             model: "facebook/detr-resnet-50"
         })
-        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
+        
+        console.log('objectDetectionRes')
         console.log(objectDetectionRes)
-       }
+        console.log('objectDetectionRes[0].label')
+        console.log(objectDetectionRes[0].label)
+       // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
+        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
+                 function (key, value) {
+                     if (key == "}") {
+                        return "<br>";
+                     }  else {
+                        return value;
+                     }
+                  })
+       
        
     </script>
   
@@ -28,7 +40,7 @@
       document.getElementById('myEnteredToken').value = myStorage 
     }
 }">
-version 0.2.5-14<br>
+version 0.2.5-15<br>
 Output in the div below. Works without personal token just stops after about 20 refreshes per hour
 <input id="myEnteredToken" type=password size=50>
 <input type="button" value="Store Token Locally" onClick="{
@@ -47,15 +59,17 @@ Output in the div below. Works without personal token just stops after about 20 
     console.log('docuemnt.HfInference')              
     console.log(document.HfInference)  
      
-    document.getElementById('myDiv01').innerHTML = JSON.stringify(document.HfInference)   
+   // document.getElementById('myDiv01').innerHTML = JSON.stringify(document.HfInference)   
+    document.getElementById('myDiv01').innerHTML = document.HfInference  
 
 }">
 <input type=button value="Show document.HfInference.Options"onclick="{
 
-    console.log('docuemnt.HfInference')              
-    console.log(document.HfInference)  
+    console.log('docuemnt.HfInference.Options')              
+    console.log(document.HfInference.Options)  
      
-    document.getElementById('myDiv01').innerHTML = JSON.stringify(document.HfInference.Options)   
+   // document.getElementById('myDiv01').innerHTML = JSON.stringify(document.HfInference.Options) 
+    document.getElementById('myDiv01').innerHTML = document.HfInference.Options   
 
 }">
   
