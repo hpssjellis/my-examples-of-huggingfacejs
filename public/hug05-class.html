@@ -1,0 +1,90 @@
+<html>
+  <head>
+     <script type="module">
+      import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
+      document.HfInference = HfInference   // bad coding but I need HfInference to be global
+     </script>
+    
+    <script>
+     myHugginFaceFun = async function(mySentToken){ 
+        let hf = new document.HfInference(mySentToken)
+
+        const imgBlob = await fetch('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png')
+            .then((res) => res.blob())
+        const objectDetectionRes = await hf.objectDetection({
+            data: imgBlob,
+            model: "facebook/detr-resnet-50"
+        })
+        
+        console.log('objectDetectionRes')
+        console.log(objectDetectionRes)
+        console.log('objectDetectionRes[0].label')
+        console.log(objectDetectionRes[0].label)
+       // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
+        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
+                 function (key, value) {
+                     if (key == "}") {
+                        return "<br>";
+                     }  else {
+                        return value;
+                     }
+                  })
+       
+     }  
+    </script>
+  
+  </head> 
+<body onload="{
+   myStorage = localStorage.getItem('myStoredToken')
+   if(myStorage  != null){
+      document.getElementById('myEnteredToken').value = myStorage 
+    }
+}">
+version 0.3.0-17<br>
+Output in the div below. Works without personal token just stops after about 20 refreshes per hour
+  
+<input id="myEnteredToken" type=password size=50>
+<input type="button" value="Store Token Locally" onClick="{
+   localStorage.setItem('myStoredToken', document.getElementById('myEnteredToken').value)
+   document.getElementById('myDiv01').innerHTML = 'Latest Token has been stored containing these last 4 characters: ' +
+       document.getElementById('myEnteredToken').value.slice(-4)
+}"><br>
+   
+<input type=button value="load Model and run"onclick="{
+    myHugginFaceFun(document.getElementById('myEnteredToken').value)                                            
+
+}"><br><br>
+  
+<input type=button value="Show hf"onclick="{
+
+    console.log('docuemnt.HfInference')              
+    console.log(document.HfInference)  
+     
+    document.getElementById('myDiv01').innerHTML = hf   
+                                                             
+     /*                                                        
+    document.getElementById('myDiv01').innerHTML = JSON.stringify(document.HfInference , 
+                 function (key, value) {
+                     if (key == '}') {
+                        return '<br>';
+                     }  else {
+                        return value;
+                     }
+                  })
+      */                                                             
+
+}">
+<input type=button value="Show hf.objectDetection"onclick="{
+
+    console.log('docuemnt.HfInference.request')              
+    console.log(document.HfInference.request)  
+     
+    document.getElementById('myDiv01').innerHTML = JSON.stringify(hf.objectDetection) 
+   // document.getElementById('myDiv01').innerHTML = document.HfInference.request  
+
+}">
+  
+  <div id="myDiv01">...</div>  
+
+</body>
+</html>
