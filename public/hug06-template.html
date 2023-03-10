@@ -39,7 +39,7 @@
         
         const imgBlob = await fetch('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png')
             .then((res) => res.blob())
-        const objectDetectionRes = await document.hf.objectDetection({
+        const objectDetectionRes = await document.myHf.objectDetection({
             data: imgBlob,
             model: "facebook/detr-resnet-50"
         })
@@ -71,7 +71,7 @@
       document.getElementById('myEnteredToken').value = myStorage 
     }
 }">
-version 0.3.2-28<br>
+version 0.3.2-29<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
