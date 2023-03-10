@@ -63,8 +63,8 @@ Output in the div below. Works without personal token just stops after about 20 
    // document.getElementById('myDiv01').innerHTML = document.HfInference   
     document.getElementById('myDiv01').innerHTML = JSON.stringify(document.HfInference , 
                  function (key, value) {
-                     if (key == "}") {
-                        return "<br>";
+                     if (key == '}') {
+                        return '<br>';
                      }  else {
                         return value;
                      }
