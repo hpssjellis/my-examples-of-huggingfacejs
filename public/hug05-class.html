@@ -41,7 +41,7 @@
       document.getElementById('myEnteredToken').value = myStorage 
     }
 }">
-version 0.3.1-20<br>
+version 0.3.1-21<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 refreshes per hour
   
@@ -57,16 +57,16 @@ Output in the div below. Works without personal token just stops after about 20 
 
 }"><br><br>
   
-<input type=button value="Show document.myHf.defaultOptions"onclick="{
+<input type=button value="Show document.myHf"onclick="{
 
 
     console.log('document.myHf.defaultOptions')              
     console.log(document.myHf.defaultOptions)  
      
-    document.getElementById('myDiv01').innerHTML = document.myHf.defaultOptions   
+//    document.getElementById('myDiv01').innerHTML = document.myHf
                                                              
-     /*                                                        
-    document.getElementById('myDiv01').innerHTML = JSON.stringify(document.HfInference , 
+                                                        
+    document.getElementById('myDiv01').innerHTML = JSON.stringify(document.myHf , 
                  function (key, value) {
                      if (key == '}') {
                         return '<br>';
@@ -74,7 +74,7 @@ Output in the div below. Works without personal token just stops after about 20 
                         return value;
                      }
                   })
-      */                                                             
+                                                                   
 
 }">
 <input type=button value="Show document.myHf.Args"onclick="{
@@ -87,7 +87,8 @@ Output in the div below. Works without personal token just stops after about 20 
 
 }">
   
-  <div id="myDiv01">...</div>  
+  <div id="myDiv01">...</div> 
+  <br><br>
   
   My Main Github <a href="https://github.com/hpssjellis/my-examples-of-huggingfacejs">here</a> and the index of demos <a href="index.html">here<a/>  <br>
   By <a href="https://twitter.com/rocksetta">@rocksetta<a/> use at your own risk!<br>
