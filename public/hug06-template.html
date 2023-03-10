@@ -6,15 +6,15 @@
      </script>
     
     <script>
-     myHugginFaceLoad = async function(mySentToken){ 
+     myHugginFaceLoad = async function(mySentToken, mySentData, mySentModel){ 
         let hf = new document.HfInference(mySentToken)
         document.myHf = hf  // let this be global, also kind of bad prrogramming
         
-        const imgBlob = await fetch('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png')
+        const imgBlob = await fetch(mySentData)
             .then((res) => res.blob())
         const objectDetectionRes = await hf.objectDetection({
             data: imgBlob,
-            model: "facebook/detr-resnet-50"
+            model: mySentModel
         })
         
         console.log('objectDetectionRes')
@@ -33,33 +33,7 @@
        
      }  
       
-      myHugginFaceReTest = async function(){ 
-       // let hf = new document.HfInference(mySentToken)
-       // document.myHf = hf  // let this be global, also kind of bad prrogramming
-        
-        const imgBlob = await fetch('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png')
-            .then((res) => res.blob())
-        const objectDetectionRes = await document.myHf.objectDetection({
-            data: imgBlob,
-            model: "facebook/detr-resnet-50"
-        })
-        
-        console.log('objectDetectionRes')
-        console.log(objectDetectionRes)
-        console.log('objectDetectionRes[0].label')
-        console.log(objectDetectionRes[0].label)
-       // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
-        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
-                 function (key, value) {
-                     if (key == "}") {
-                        return "<br>";
-                     }  else {
-                        return value;
-                     }
-                  })
-       
-     }       
-      
+    
       
       
     </script>
@@ -71,23 +45,29 @@
       document.getElementById('myEnteredToken').value = myStorage 
     }
 }">
-version 0.3.2-29<br>
+version 0.3.3-30<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
+Note: Delete and save a blank token to return to the regular rate.<br><br>  
 <input id="myEnteredToken" type=password size=30>
 <input type="button" value="Store Token Locally" onClick="{
    localStorage.setItem('myStoredToken', document.getElementById('myEnteredToken').value)
    document.getElementById('myDiv01').innerHTML = 'Latest Token has been stored containing these last 4 characters: ' +
        document.getElementById('myEnteredToken').value.slice(-4)
-}">Note: Delete and save blank token to return to regular rate.<br><br>
+}"><br>
+  
+Load the URL of the image to Analyse:  
+  
+<input id="myDataOrImage" type=text value="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" size=70  placeholder="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" ><input type=button value="Load Data/Image" onclick="{
+  alert()
+  }" > <br> <div id="myDataDisplay">...</div><br>
+  
+  <a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="facebook/detr-resnet-50" placeholder="facebook/detr-resnet-50">  
+  
    
 <input type=button value="LOAD and Test Model"onclick="{
-    myHugginFaceLoad(document.getElementById('myEnteredToken').value)                                            
-
-}"><input type=button value="re-Classify"onclick="{
-   myHugginFaceReTest()                                          
-
+    myHugginFaceLoad(document.getElementById('myEnteredToken').value,document.getElementById('myDataOrImage').value,document.getElementById('myModel').value )                                            
 }"><br><br>
   
 
