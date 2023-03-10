@@ -42,10 +42,11 @@
 }">
 version 0.2.5-16<br>
 Output in the div below. Works without personal token just stops after about 20 refreshes per hour
+  
 <input id="myEnteredToken" type=password size=50>
 <input type="button" value="Store Token Locally" onClick="{
    localStorage.setItem('myStoredToken', document.getElementById('myEnteredToken').value)
-   document.getElementById('myDiv01').innerHTML = 'Latest Token has been stored containing these last 4 character: " +
+   document.getElementById('myDiv01').innerHTML = 'Latest Token has been stored containing these last 4 characters: ' +
        document.getElementById('myEnteredToken').value.slice(-4)
 }"><br>
    
