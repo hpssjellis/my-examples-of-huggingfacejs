@@ -47,7 +47,7 @@
       document.getElementById('myEnteredToken').value = myStorage 
     }
 }">
-version 0.3.3-31<br>
+version 0.3.3-32<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
@@ -66,14 +66,16 @@ Load the URL of the image to Analyse:<br>
    const myImg = document.getElementById('myDataDisplay');
 
    fetch(document.getElementById('myDataOrImage').value)
-   .then(r => r.json())
+   //.then(r => r.json())
    .then(r => myImg.src = r.primaryImage);
+   console.log()
 }" > <br> <div id="myDataDisplay">...</div><br>
   
   <a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="facebook/detr-resnet-50" placeholder="facebook/detr-resnet-50">  
   
    
 <input type=button value="LOAD and Test Model"onclick="{
+    document.getElementById('myDiv01').innerHTML = ''
     myHugginFaceLoad(document.getElementById('myEnteredToken').value,document.getElementById('myDataOrImage').value,document.getElementById('myModel').value ) 
                                                        
 }"><br><br>
