@@ -8,6 +8,7 @@
     <script>
      myHugginFaceFun = async function(mySentToken){ 
         let hf = new document.HfInference(mySentToken)
+        document.myHf = hf  // let this be global, also kind of bad prrogramming
 
         const imgBlob = await fetch('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png')
             .then((res) => res.blob())
@@ -40,7 +41,7 @@
       document.getElementById('myEnteredToken').value = myStorage 
     }
 }">
-version 0.3.0-17<br>
+version 0.3.0-18<br>
 Output in the div below. Works without personal token just stops after about 20 refreshes per hour
   
 <input id="myEnteredToken" type=password size=50>
@@ -55,12 +56,13 @@ Output in the div below. Works without personal token just stops after about 20 
 
 }"><br><br>
   
-<input type=button value="Show hf"onclick="{
+<input type=button value="Show document.myHf"onclick="{
+   let hf = new document.HfInference(mySentToken)
 
     console.log('docuemnt.HfInference')              
     console.log(document.HfInference)  
      
-    document.getElementById('myDiv01').innerHTML = hf   
+    document.getElementById('myDiv01').innerHTML = document.myHf   
                                                              
      /*                                                        
     document.getElementById('myDiv01').innerHTML = JSON.stringify(document.HfInference , 
@@ -74,12 +76,12 @@ Output in the div below. Works without personal token just stops after about 20 
       */                                                             
 
 }">
-<input type=button value="Show hf.objectDetection"onclick="{
+<input type=button value="Show document.myHf.objectDetection"onclick="{
 
-    console.log('docuemnt.HfInference.request')              
-    console.log(document.HfInference.request)  
+    console.log('document.myHf.objectDetection')              
+    console.log(document.myHf.objectDetection)  
      
-    document.getElementById('myDiv01').innerHTML = JSON.stringify(hf.objectDetection) 
+    document.getElementById('myDiv01').innerHTML = JSON.stringify(document.myHf.objectDetection) 
    // document.getElementById('myDiv01').innerHTML = document.HfInference.request  
 
 }">
