@@ -41,16 +41,16 @@
       document.getElementById('myEnteredToken').value = myStorage 
     }
 }">
-version 0.3.1-22<br>
+version 0.3.1-23<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
-Output in the div below. Works without personal token just stops after about 20 refreshes per hour
+Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
 <input id="myEnteredToken" type=password size=30>
 <input type="button" value="Store Token Locally" onClick="{
    localStorage.setItem('myStoredToken', document.getElementById('myEnteredToken').value)
    document.getElementById('myDiv01').innerHTML = 'Latest Token has been stored containing these last 4 characters: ' +
        document.getElementById('myEnteredToken').value.slice(-4)
-}">Note: Delete and save blank token to return to regular rate.<br>
+}">Note: Delete and save blank token to return to regular rate.<br><br>
    
 <input type=button value="LOAD and Run Model"onclick="{
     myHugginFaceFun(document.getElementById('myEnteredToken').value)                                            
@@ -60,11 +60,17 @@ Output in the div below. Works without personal token just stops after about 20 
 <input type=button value="stringify document.myHf"onclick="{
 
 
-    console.log('document.myHf.defaultOptions')              
-    console.log(document.myHf.defaultOptions)  
+    console.log('document.myHf')              
+    console.log(document.myHf)  
+                                                           
+    for (const key of Object.getOwnPropertyNames(Object.getPrototypeOf(document.myHf))) {
+       console.log(key, typeof hf[key], hf[key]);
+    }                                                      
+                                                           
+                                                           
      
-    document.getElementById('myText01').value = document.myHf
-                                                             
+   // document.getElementById('myText01').value = document.myHf
+    /*                                                         
                                                         
     document.getElementById('myDiv01').innerHTML = JSON.stringify(document.getElementById('myText01').value , 
                  function (key, value) {
@@ -75,13 +81,14 @@ Output in the div below. Works without personal token just stops after about 20 
                      }
                   })
                                                                    
-
+   */
 }">
 <input type=button value="Show document.myHf"onclick="{
 
     console.log('document.myHf')              
     console.log(document.myHf)  
      
+    document.getElementById('myDiv01').innerHTML = document.myHf
     document.getElementById('myDiv01').innerHTML = JSON.stringify(document.myHf) 
    // document.getElementById('myDiv01').innerHTML = document.HfInference.request  
 
