@@ -15,7 +15,8 @@
             data: imgBlob,
             model: "facebook/detr-resnet-50"
         })
-        document.getElementById('myDiv01').innerHTML = objectDetectionRes
+        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, null ,'<br>') 
+        console.log(objectDetectionRes)
        }
        
     </script>
