@@ -45,7 +45,7 @@
     }
 }">
   <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  
-version 0.3.3-38<br>
+version 0.3.3-39<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
@@ -82,11 +82,13 @@ Load the URL of the image to Analyse:<br>
    console.log(document.myObjDetect)
                                          
    for (let myLoop = 0; myLoop <= 0; myLoop++ ) {   ///document.myObjDetect.length
-      document.getElementById('myBox01').value   = document.myObjDetect[myLoop].label +  parseInt(document.myObjDetect[myLoop].value*100) + '%'  
-      document.getElementById('myBox01').style.top = document.myObjDetect[myLoop].ymin       
-      document.getElementById('myBox01').style.left = document.myObjDetect[myLoop].xmin        
-      document.getElementById('myBox01').style.width = document.myObjDetect[myLoop].xmax - document.myObjDetect[myLoop].xmin      
-      document.getElementById('myBox01').style.height = document.myObjDetect[myLoop].ymax - document.myObjDetect[myLoop].ymin                                  
+      document.getElementById('myBox01').value   = document.myObjDetect[myLoop].label + ': '+  parseInt(document.myObjDetect[myLoop].score*100) + '%'  
+      document.getElementById('myBox01').style.top = document.myObjDetect[myLoop].box.ymin       
+      document.getElementById('myBox01').style.left = document.myObjDetect[myLoop].box.xmin        
+      document.getElementById('myBox01').style.width = document.myObjDetect[myLoop].box.xmax - document.myObjDetect[myLoop].box.xmin      
+      document.getElementById('myBox01').style.height = document.myObjDetect[myLoop].box.ymax - document.myObjDetect[myLoop].box.ymin  
+                                         console.log('document.myObjDetect[myLoop].box.ymax') 
+                                         console.log(document.myObjDetect[myLoop].box.ymax)
    }                                      
                                          
  }">
