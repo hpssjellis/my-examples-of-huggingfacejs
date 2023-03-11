@@ -13,9 +13,9 @@
         const imgBlob = await fetch(mySentData)  //, {    
      // method: 'GET',    
      // withCredentials: true,    
-    //  crossorigin: true,    
-  //    mode: 'no-cors',       
-   // })
+     // crossorigin: true,    
+     // mode: 'no-cors',       
+     // })
             .then((res) => res.blob())
         const objectDetectionRes = await hf.objectDetection({
             data: imgBlob,
@@ -71,12 +71,12 @@ Note: Delete and save a blank token to return to the regular rate.<br><br>
    localStorage.setItem('myStoredToken', document.getElementById('myEnteredToken').value)
    document.getElementById('myDiv01').innerHTML = 'Latest Token has been stored containing these last 4 characters: ' +
        document.getElementById('myEnteredToken').value.slice(-4)
-}"><br>
+}"><br><br>
   
 Load the URL of the image to Analyse:<br>  
-    <input type="button" value="Convert from video" onclick="convert()">  
+
 <input id="myDataOrImage" type=text value="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" size=100  placeholder="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" >
-<input type=button value="Load Data/Image" onclick="{
+<input id="myLoadButton" type=button value="Load Data/Image" onclick="{
 
   document.getElementById('myDataDisplay').src = document.getElementById('myDataOrImage').value
   for (let myLoop = 0; myLoop < 10; myLoop++ ) {   // hide the boxes
@@ -90,7 +90,8 @@ Load the URL of the image to Analyse:<br>
   <a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="facebook/detr-resnet-50" placeholder="facebook/detr-resnet-50">  
   
    
-<input type=button value="LOAD and Test Model"onclick="{
+<input id="myDectButton" type=button value="Load Image and Object Detect"onclick="{
+    document.getElementById('myLoadButton').click()   // Load the latest image                                                           
     document.getElementById('myDiv01').innerHTML = ''
     myHugginFaceLoad(document.getElementById('myEnteredToken').value,document.getElementById('myDataOrImage').value,document.getElementById('myModel').value ) 
                                                        
@@ -122,8 +123,8 @@ Load the URL of the image to Analyse:<br>
   
   
   
-  
-    <video id="myVideoTag" width="640" height="480"></video>
+    <input type="button" value="Take Picture and Object Detect" onclick="convert()">  <br>
+    <video id="myVideoTag" width="640" height="480"></video> 
     
     <canvas id="myCanvasTag" width="640" height="480"></canvas>
     <br>
@@ -160,7 +161,7 @@ Load the URL of the image to Analyse:<br>
         const myBase64Image = myCanvas.toDataURL('image/png');
         document.getElementById('myDataOrImage').value = myBase64Image
         
-        
+            document.getElementById('myDetectButton').click()   // Load this image and object detect on it     
         // Do something with the base64 image (e.g. display it in an img tag)
        // const myImg = document.createElement('img');
        // myImg.src = myBase64Image;
