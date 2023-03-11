@@ -61,7 +61,7 @@
     }
 }">
   <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br> 
-version 0.3.3-41<br>
+version 0.3.3-42<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
@@ -79,8 +79,10 @@ Load the URL of the image to Analyse:<br>
 <input type=button value="Load Data/Image" onclick="{
 
   document.getElementById('myDataDisplay').src = document.getElementById('myDataOrImage').value
-  for (let myLoop = 0; myLoop < document.myObjDetect.length; myLoop++ ) {   
+  for (let myLoop = 0; myLoop < document.myObjDetect.length; myLoop++ ) {   // hide the boxes
       document.getElementById('myBox'+myLoop).style.left = '-50px'       
+      document.getElementById('myBox'+myLoop).style.width = '10px'       
+      document.getElementById('myBox'+myLoop).style.height = '10px'       
   }                                          
                                                     
 }" > <br> <img id="myDataDisplay" style="position:absolute; left;0px; top:0px;  " src="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" /><br>
