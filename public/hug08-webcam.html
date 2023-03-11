@@ -61,7 +61,7 @@
     }
 }">
   <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br> <br><br> <br><br> 
-version 0.4.0-44<br>
+version 0.4.0-45<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
@@ -74,7 +74,7 @@ Note: Delete and save a blank token to return to the regular rate.<br><br>
 }"><br>
   
 Load the URL of the image to Analyse:<br>  
-  
+    <input type="button" value="Convert from video" onclick="convert()">  
 <input id="myDataOrImage" type=text value="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" size=100  placeholder="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" >
 <input type=button value="Load Data/Image" onclick="{
 
@@ -127,7 +127,7 @@ Load the URL of the image to Analyse:<br>
     
     <canvas id="myCanvasTag" width="640" height="480"></canvas>
     <br>
-    <input type="button" value="Convert" onclick="convert()">
+
     <script>
       // Get video element and create canvas element
       const myVideo = document.getElementById('myVideoTag');
@@ -158,7 +158,7 @@ Load the URL of the image to Analyse:<br>
         
         // Convert canvas to base64 image
         const myBase64Image = myCanvas.toDataURL('image/png');
-        
+        document.getElementById('myDataOrImage').value = myBase64Image
         // Do something with the base64 image (e.g. display it in an img tag)
         const myImg = document.createElement('img');
         myImg.src = myBase64Image;
