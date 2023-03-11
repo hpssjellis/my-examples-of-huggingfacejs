@@ -97,8 +97,16 @@ Load the URL of the image to Analyse:<br>
   document.getElementById('myDataDisplay').src = document.getElementById('myDataOrImage').value                                                                                           
 }" > <br> 
 
+  <input type=button value=move onlcick="{
+   document.getElementById('myBox01').style.top = '600px'        
+   document.getElementById('myBox01').style.left = '300px'       
+   document.getElementById('myBox01').style.width = '300px'      
+   document.getElementById('myBox01').style.height = '300px'                                    
+ }">
 
 <b id="myBox01" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; ">...</b>
+  
+  
 
 </body>
 </html>
