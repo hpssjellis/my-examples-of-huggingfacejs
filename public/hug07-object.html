@@ -35,7 +35,7 @@
        
        
                                                 
-   for (let myLoop = 0; myLoop <= 1; myLoop++ ) {   ///document.myObjDetect.length
+   for (let myLoop = 0; myLoop < document.myObjDetect.length; myLoop++ ) {  
       document.getElementById('myBox'+myLoop).innerText   = document.myObjDetect[myLoop].label + ': '+  parseInt(document.myObjDetect[myLoop].score*100) + '%'  
       document.getElementById('myBox'+myLoop).style.top = document.myObjDetect[myLoop].box.ymin       
       document.getElementById('myBox'+myLoop).style.left = document.myObjDetect[myLoop].box.xmin        
@@ -56,7 +56,7 @@
     }
 }">
   <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br> 
-version 0.3.3-40<br>
+version 0.3.3-41<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
@@ -102,16 +102,16 @@ Load the URL of the image to Analyse:<br>
 }" > <br> 
 
 
-<b id="myBox0" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; color:red;">...</b>
-<b id="myBox1" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; color:red;">...</b>
-<b id="myBox2" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; color:red;">...</b>
-<b id="myBox3" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; color:red;">...</b>
-<b id="myBox4" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; color:red;">...</b>
-<b id="myBox5" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; color:red;">...</b>
-<b id="myBox6" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; color:red;">...</b>
-<b id="myBox7" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; color:red;">...</b>
-<b id="myBox8" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; color:red;">...</b>
-<b id="myBox9" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox0" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox1" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox2" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox3" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox4" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox5" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox6" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox7" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox8" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox9" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
   
   
 
