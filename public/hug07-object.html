@@ -74,7 +74,9 @@ Load the URL of the image to Analyse:<br>
 <input type=button value="Load Data/Image" onclick="{
 
   document.getElementById('myDataDisplay').src = document.getElementById('myDataOrImage').value
-                                        
+  for (let myLoop = 0; myLoop < document.myObjDetect.length; myLoop++ ) {   
+      document.getElementById('myBox'+myLoop).style.left = '-50px'       
+  }                                          
                                                     
 }" > <br> <img id="myDataDisplay" style="position:absolute; left;0px; top:0px;  " src="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" /><br>
   
