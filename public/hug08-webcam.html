@@ -1,0 +1,125 @@
+<html>
+  <head>
+     <script type="module">
+      import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
+      document.HfInference = HfInference   // bad coding but I need HfInference to be global
+     </script>
+    
+    <script>
+     myHugginFaceLoad = async function(mySentToken, mySentData, mySentModel){ 
+        let hf = new document.HfInference(mySentToken)
+        document.myHf = hf  // let this be global, also kind of bad prrogramming
+        
+        const imgBlob = await fetch(mySentData)  //, {    
+     // method: 'GET',    
+     // withCredentials: true,    
+    //  crossorigin: true,    
+  //    mode: 'no-cors',       
+   // })
+            .then((res) => res.blob())
+        const objectDetectionRes = await hf.objectDetection({
+            data: imgBlob,
+            model: mySentModel
+        })
+        
+        console.log('objectDetectionRes')
+        console.log(objectDetectionRes)
+        console.log('objectDetectionRes[0].label')
+        console.log(objectDetectionRes[0].label)
+       
+        document.myObjDetect = objectDetectionRes   // make it global
+       // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
+        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
+                 function (key, value) {
+                     if (key == "}") {
+                        return "<br>";
+                     }  else {
+                        return value;
+                     }
+                  })
+       
+       
+                                                
+   for (let myLoop = 0; myLoop < document.myObjDetect.length; myLoop++ ) {  
+      document.getElementById('myBox'+myLoop).innerText   = document.myObjDetect[myLoop].label + ': '+  parseInt(document.myObjDetect[myLoop].score*100) + '%'  
+      document.getElementById('myBox'+myLoop).style.top = document.myObjDetect[myLoop].box.ymin       
+      document.getElementById('myBox'+myLoop).style.left = document.myObjDetect[myLoop].box.xmin        
+      document.getElementById('myBox'+myLoop).style.width = document.myObjDetect[myLoop].box.xmax - document.myObjDetect[myLoop].box.xmin      
+      document.getElementById('myBox'+myLoop).style.height = document.myObjDetect[myLoop].box.ymax - document.myObjDetect[myLoop].box.ymin  
+
+   }      
+       
+     }  
+      
+    </script>
+  
+  </head> 
+<body onload="{
+   myStorage = localStorage.getItem('myStoredToken')
+   if(myStorage  != null){
+      document.getElementById('myEnteredToken').value = myStorage 
+    }
+}">
+  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br> <br><br> <br><br> 
+version 0.4.0-44<br>
+  <h2 align=center> Testing HuggingFaceJS</h2>
+Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
+  
+Note: Delete and save a blank token to return to the regular rate.<br><br>  
+<input id="myEnteredToken" type=password size=30>
+<input type="button" value="Store Token Locally" onClick="{
+   localStorage.setItem('myStoredToken', document.getElementById('myEnteredToken').value)
+   document.getElementById('myDiv01').innerHTML = 'Latest Token has been stored containing these last 4 characters: ' +
+       document.getElementById('myEnteredToken').value.slice(-4)
+}"><br>
+  
+Load the URL of the image to Analyse:<br>  
+  
+<input id="myDataOrImage" type=text value="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" size=100  placeholder="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" >
+<input type=button value="Load Data/Image" onclick="{
+
+  document.getElementById('myDataDisplay').src = document.getElementById('myDataOrImage').value
+  for (let myLoop = 0; myLoop < 10; myLoop++ ) {   // hide the boxes
+      document.getElementById('myBox'+myLoop).style.left = '-50px'       
+      document.getElementById('myBox'+myLoop).style.width = '10px'       
+      document.getElementById('myBox'+myLoop).style.height = '10px'       
+  }                                          
+                                                    
+}" > <br> <img id="myDataDisplay" style="position:absolute; left;0px; top:0px;  " src="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" /><br>
+  
+  <a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="facebook/detr-resnet-50" placeholder="facebook/detr-resnet-50">  
+  
+   
+<input type=button value="LOAD and Test Model"onclick="{
+    document.getElementById('myDiv01').innerHTML = ''
+    myHugginFaceLoad(document.getElementById('myEnteredToken').value,document.getElementById('myDataOrImage').value,document.getElementById('myModel').value ) 
+                                                       
+}"><br><br>
+  
+
+
+
+  <div id="myDiv01">...</div> 
+  <br><br>
+  
+  My Main Github <a href="https://github.com/hpssjellis/my-examples-of-huggingfacejs">here</a> and the index of demos <a href="index.html">here<a/>  <br>
+  By <a href="https://twitter.com/rocksetta">@rocksetta<a/> use at your own risk!<br>
+  
+
+
+
+<b id="myBox0" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox1" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox2" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox3" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox4" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox5" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox6" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox7" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox8" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox9" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+  
+  
+
+</body>
+</html>
