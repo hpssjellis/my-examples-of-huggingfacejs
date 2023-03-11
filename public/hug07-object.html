@@ -77,12 +77,18 @@ Load the URL of the image to Analyse:<br>
 }"><br><br>
   
   <input type=button value=move onclick="{
-   document.getElementById('myBox01').style.top = '600px'        
-   document.getElementById('myBox01').style.left = '300px'       
-   document.getElementById('myBox01').style.width = '300px'      
-   document.getElementById('myBox01').style.height = '300px'   
-                                         console.log('document.myObjDetect')
-                                         console.log(document.myObjDetect)
+  
+   console.log('document.myObjDetect')
+   console.log(document.myObjDetect)
+                                         
+   for (let myLoop = 0; myLoop <= 0; myLoop++ ) {   ///document.myObjDetect.length
+      document.getElementById('myBox01').value   = document.myObjDetect[myLoop].label +  parseInt(document.myObjDetect[myLoop].value*100) + '%'  
+      document.getElementById('myBox01').style.top = document.myObjDetect[myLoop].ymin       
+      document.getElementById('myBox01').style.left = document.myObjDetect[myLoop].xmin        
+      document.getElementById('myBox01').style.width = document.myObjDetect[myLoop].xmax - document.myObjDetect[myLoop].xmin      
+      document.getElementById('myBox01').style.height = document.myObjDetect[myLoop].ymax - document.myObjDetect[myLoop].ymin                                  
+   }                                      
+                                         
  }">
 
 
