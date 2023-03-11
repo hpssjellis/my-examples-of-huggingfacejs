@@ -33,6 +33,17 @@
                      }
                   })
        
+       
+                                                
+   for (let myLoop = 0; myLoop <= 1; myLoop++ ) {   ///document.myObjDetect.length
+      document.getElementById('myBox'+myLoop).innerText   = document.myObjDetect[myLoop].label + ': '+  parseInt(document.myObjDetect[myLoop].score*100) + '%'  
+      document.getElementById('myBox'+myLoop).style.top = document.myObjDetect[myLoop].box.ymin       
+      document.getElementById('myBox'+myLoop).style.left = document.myObjDetect[myLoop].box.xmin        
+      document.getElementById('myBox'+myLoop).style.width = document.myObjDetect[myLoop].box.xmax - document.myObjDetect[myLoop].box.xmin      
+      document.getElementById('myBox'+myLoop).style.height = document.myObjDetect[myLoop].box.ymax - document.myObjDetect[myLoop].box.ymin  
+
+   }      
+       
      }  
       
     </script>
@@ -76,22 +87,7 @@ Load the URL of the image to Analyse:<br>
                                                        
 }"><br><br>
   
-  <input type=button value=move onclick="{
-  
-   console.log('document.myObjDetect')
-   console.log(document.myObjDetect)
-                                         
-   for (let myLoop = 0; myLoop <= 1; myLoop++ ) {   ///document.myObjDetect.length
-      document.getElementById('myBox'+myLoop).innerText   = document.myObjDetect[myLoop].label + ': '+  parseInt(document.myObjDetect[myLoop].score*100) + '%'  
-      document.getElementById('myBox'+myLoop).style.top = document.myObjDetect[myLoop].box.ymin       
-      document.getElementById('myBox'+myLoop).style.left = document.myObjDetect[myLoop].box.xmin        
-      document.getElementById('myBox'+myLoop).style.width = document.myObjDetect[myLoop].box.xmax - document.myObjDetect[myLoop].box.xmin      
-      document.getElementById('myBox'+myLoop).style.height = document.myObjDetect[myLoop].box.ymax - document.myObjDetect[myLoop].box.ymin  
-                                         console.log('document.myObjDetect[myLoop].box.ymax') 
-                                         console.log(document.myObjDetect[myLoop].box.ymax)
-   }                                      
-                                         
- }">
+
 
 
   <div id="myDiv01">...</div> 
