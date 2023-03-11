@@ -10,12 +10,12 @@
         let hf = new document.HfInference(mySentToken)
         document.myHf = hf  // let this be global, also kind of bad prrogramming
         
-        const imgBlob = await fetch(mySentData, {    
+        const imgBlob = await fetch(mySentData)  //, {    
      // method: 'GET',    
      // withCredentials: true,    
     //  crossorigin: true,    
-      mode: 'no-cors',       
-    })
+  //    mode: 'no-cors',       
+   // })
             .then((res) => res.blob())
         const objectDetectionRes = await hf.objectDetection({
             data: imgBlob,
