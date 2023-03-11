@@ -81,12 +81,12 @@ Load the URL of the image to Analyse:<br>
    console.log('document.myObjDetect')
    console.log(document.myObjDetect)
                                          
-   for (let myLoop = 0; myLoop <= 0; myLoop++ ) {   ///document.myObjDetect.length
-      document.getElementById('myBox01').innerText   = document.myObjDetect[myLoop].label + ': '+  parseInt(document.myObjDetect[myLoop].score*100) + '%'  
-      document.getElementById('myBox01').style.top = document.myObjDetect[myLoop].box.ymin       
-      document.getElementById('myBox01').style.left = document.myObjDetect[myLoop].box.xmin        
-      document.getElementById('myBox01').style.width = document.myObjDetect[myLoop].box.xmax - document.myObjDetect[myLoop].box.xmin      
-      document.getElementById('myBox01').style.height = document.myObjDetect[myLoop].box.ymax - document.myObjDetect[myLoop].box.ymin  
+   for (let myLoop = 0; myLoop <= 1; myLoop++ ) {   ///document.myObjDetect.length
+      document.getElementById('myBox'+myLoop).innerText   = document.myObjDetect[myLoop].label + ': '+  parseInt(document.myObjDetect[myLoop].score*100) + '%'  
+      document.getElementById('myBox'+myLoop).style.top = document.myObjDetect[myLoop].box.ymin       
+      document.getElementById('myBox'+myLoop).style.left = document.myObjDetect[myLoop].box.xmin        
+      document.getElementById('myBox'+myLoop).style.width = document.myObjDetect[myLoop].box.xmax - document.myObjDetect[myLoop].box.xmin      
+      document.getElementById('myBox'+myLoop).style.height = document.myObjDetect[myLoop].box.ymax - document.myObjDetect[myLoop].box.ymin  
                                          console.log('document.myObjDetect[myLoop].box.ymax') 
                                          console.log(document.myObjDetect[myLoop].box.ymax)
    }                                      
@@ -106,7 +106,8 @@ Load the URL of the image to Analyse:<br>
 }" > <br> 
 
 
-<b id="myBox01" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; color:red;background-Color:white;">...</b>
+<b id="myBox0" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox1" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; color:red;">...</b>
   
   
 
