@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Webcam to Base64</title>
+  </head>
+  <body>
+    <video id="myVideoTag" width="640" height="480"></video>
+    
+    <canvas id="myCanvasTag" width="640" height="480"></canvas>
+    <br>
+    <input type="button" value="Convert" onclick="convert()">
+    <script>
+      // Get video element and create canvas element
+      const myVideo = document.getElementById('myVideoTag');
+      const myCanvas = document.getElementById('myCanvasTag');
+     // const myCanvas = document.createElement('canvas');
+      myCanvas.width = myVideo.width;
+      myCanvas.height = myVideo.height;
+      
+      // Function to get webcam stream
+      async function getStream() {
+        try {
+          const myStream = await navigator.mediaDevices.getUserMedia({video: true});
+          myVideo.srcObject = myStream;
+          myVideo.play();
+        } catch (error) {
+          console.error('Error accessing webcam:', error);
+        }
+      }
+      getStream();
+
+      // Function to convert video to base64 image
+      async function convert() {
+        // Draw current video frame onto canvas
+        const myCtx = myCanvas.getContext('2d');
+        myCtx.drawImage(myVideo, 0, 0, myCanvas.width, myCanvas.height);
+        
+        // Convert canvas to base64 image
+        const myBase64Image = myCanvas.toDataURL('image/png');
+        
+        // Do something with the base64 image (e.g. display it in an img tag)
+        const myImg = document.createElement('img');
+        myImg.src = base64Image;
+        document.body.appendChild(myImg);
+      }
+    </script>
+  </body>
+</html>
