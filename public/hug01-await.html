@@ -1,0 +1,20 @@
+<html>
+  <body>
+    version 0.0.1<br>
+    View the console at ctrl-shift-i (for window or linux)<br>
+    <script type="module">
+        import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
+        const TOKEN = ""
+        let hf = new HfInference(TOKEN)
+
+        const myResposne = await fetch("https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png")
+         //   .then((res) => res.blob())
+        let imgBlob = myResposne.blob();
+        const objectDetectionRes = await hf.objectDetection({
+            data: imgBlob,
+            model: "facebook/detr-resnet-50"
+        })
+        console.log(objectDetectionRes)
+    </script>
+  </body>
+</html>
