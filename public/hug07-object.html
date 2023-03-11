@@ -35,15 +35,6 @@
        
      }  
       
-    
-     myImageLoad = async function(myEnteredImageURL){  
-        const myImg = document.getElementById(myEnteredImageURL);
-
-        const myResponse = await fetch(document.getElementById('myDataOrImage').value)
-        const myBlob = await myResponse.blob()
-        const myImageBase64 = URL.createObjectURL(myBlob) 
-        myImg.src  =   myImageBase64       
-      }
     </script>
   
   </head> 
@@ -54,7 +45,7 @@
     }
 }">
   <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>
-version 0.3.3-37<br>
+version 0.3.3-38<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
@@ -85,6 +76,14 @@ Load the URL of the image to Analyse:<br>
                                                        
 }"><br><br>
   
+  <input type=button value=move onclick="{
+   document.getElementById('myBox01').style.top = '600px'        
+   document.getElementById('myBox01').style.left = '300px'       
+   document.getElementById('myBox01').style.width = '300px'      
+   document.getElementById('myBox01').style.height = '300px'   
+                                         console.log('document.myObjDetect')
+                                         console.log(document.myObjDetect)
+ }">
 
 
   <div id="myDiv01">...</div> 
@@ -98,12 +97,6 @@ Load the URL of the image to Analyse:<br>
   document.getElementById('myDataDisplay').src = document.getElementById('myDataOrImage').value                                                                                           
 }" > <br> 
 
-  <input type=button value=move onclick="{
-   document.getElementById('myBox01').style.top = '600px'        
-   document.getElementById('myBox01').style.left = '300px'       
-   document.getElementById('myBox01').style.width = '300px'      
-   document.getElementById('myBox01').style.height = '300px'                                    
- }">
 
 <b id="myBox01" style="border-Style:solid;  border-color:red;   position:absolute; left;50px; top:50px; width:40px; height:30px; ">...</b>
   
