@@ -64,7 +64,7 @@
 <img id="myDataDisplay" style="position:absolute; left;0px; top:0px; display: inline-block; " src="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" /><br>
 
   <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br> <br><br> <br><br> 
-version 0.5.1-58<br>
+version 0.5.1-59<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
@@ -133,7 +133,7 @@ Load the URL of the image to Analyse:<br>
         // alert('portrat') 
         myCanvas.width = 480;
         myCanvas.height = 640;                                                     
-      }   else {
+      } else {
         //alert('landscape')
         myCanvas.width = 640;
         myCanvas.height = 480;
@@ -141,7 +141,7 @@ Load the URL of the image to Analyse:<br>
                                                              
     }">  
   
-    <select id="camera-select" onChange="{ getStream2(); alert(window.orientation); }">
+    <select id="camera-select" onChange="{ getStream2(); }">
       <option value="user" SELECT>Front Camera</option>
       <option value="environment">Back Camera</option>
     </select>
