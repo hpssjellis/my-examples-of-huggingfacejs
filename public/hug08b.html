@@ -147,7 +147,7 @@ Load the URL of the image to Analyse:<br>
       
       // Function to get webcam stream
       async function getStream() {
-
+      try {
         if (myStream) {
            currentStream.getTracks().forEach(track => {
              track.stop();
@@ -160,7 +160,7 @@ Load the URL of the image to Analyse:<br>
         };
 
 
-        try {
+
           const myStream = await navigator.mediaDevices.getUserMedia(myConstraints);
           myVideo.srcObject = myStream;
           myVideo.play();
