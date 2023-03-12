@@ -64,7 +64,7 @@
 <img id="myDataDisplay" style="position:absolute; left;0px; top:0px; display: inline-block; " src="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" /><br>
 
   <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br> <br><br> <br><br> 
-version 0.5.1-49<br>
+version 0.5.1-50<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
   
@@ -149,7 +149,7 @@ Load the URL of the image to Analyse:<br>
       async function getStream() {
 
         if (myVideo.srcObject) {
-           currentStream.getTracks().forEach(track => {
+           myVideo.srcObject.getTracks().forEach(track => {
              track.stop();
            });
         }
