@@ -127,17 +127,18 @@ Load the URL of the image to Analyse:<br>
   
   
     <input type="button" value="Take Picture and Object Detect" onclick="convert()">  
-    <input type="button" value="Switch orientation" onclick="{
-     if   (window.innerHeight > window.innerWidth) {
-        alert('portrat')                                                     
-      }   else {alert('landscape')}                                                     
-                                                             
-    }">  
+
   
     <input type="button" value="Switch orientation2" onclick="{
      if   (screen.height > screen.width) {
-        alert('portrat')                                                     
-      }   else {alert('landscape')}                                                     
+        // alert('portrat') 
+        myCanvas.width = 480;
+        myCanvas.height = 640;                                                     
+      }   else {
+        //alert('landscape')
+        myCanvas.width = 640;
+        myCanvas.height = 480;
+      }                                                     
                                                              
     }">  
   
