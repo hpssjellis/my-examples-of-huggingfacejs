@@ -162,8 +162,10 @@ Load the URL of the image to Analyse:<br>
 
         if (myVideo.srcObject) {
            myVideo.srcObject.getTracks().forEach(track => {
+             myVideo.srcObject.removeTrack(track);
              track.stop();
            });
+          myVideo.srcObject = null
         }
         
         const myConstraints = {
