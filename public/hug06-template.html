@@ -8,12 +8,12 @@
     <script>
      myHugginFaceLoad = async function(mySentToken, mySentData, mySentModel){ 
         let hf = new document.HfInference(mySentToken)
-        document.myHf = hf  // let this be global, also kind of bad prrogramming
+        document.myHf = hf  // let this be global, also kind of bad programming
         
-        const imgBlob = await fetch(mySentData)
-            .then((res) => res.blob())
+        const myResponse = await fetch(mySentData)
+        const myImgBlob = await myResponse.blob();
         const objectDetectionRes = await hf.objectDetection({
-            data: imgBlob,
+            data: myImgBlob,
             model: mySentModel
         })
         
