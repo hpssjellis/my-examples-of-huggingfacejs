@@ -127,7 +127,8 @@ Load the URL of the image to Analyse:<br>
   
   
     <input type="button" value="Take Picture and Object Detect" onclick="convert()">  
-    <select id="camera-select" onChange="{ getStream() }">
+  
+    <select id="camera-select" onChange="{ getStream2() }">
       <option value="user" SELECT>Front Camera</option>
       <option value="environment">Back Camera</option>
     </select><br>
@@ -147,6 +148,17 @@ Load the URL of the image to Analyse:<br>
       
       // Function to get webcam stream
       async function getStream() {
+
+      try {
+          const myStream = await navigator.mediaDevices.getUserMedia(video);
+          myVideo.srcObject = myStream;
+          myVideo.play();
+        } catch (error) {
+          console.error('Error accessing webcam:', error);
+        }
+      }
+      
+       async function getStream2() {
 
         if (myVideo.srcObject) {
            myVideo.srcObject.getTracks().forEach(track => {
