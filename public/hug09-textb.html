@@ -12,10 +12,8 @@
 
         const objectDetectionRes = await hf.summarization({
             model: mySentModel,
-           inputs: mySentData ,
-            parameters: {
-                 max_length: 100
-            }
+            question: mySentData,
+            context: 'The capital of France is Paris.'
          })
       
 
@@ -60,9 +58,10 @@ Note: Delete and save a blank token to return to the regular rate.<br><br>
        document.getElementById('myEnteredToken').value.slice(-4)
 }"><br><br>
   
-Load this string of text < 100 characters to Analyse:<br>  
+Load these strings of text :<br>  
   
-<input id="myDataOrImage" type=text value="What is the capital of France?" size=100  placeholder="What is the capital of France?" >
+Question: <input id="myDataOrImage" type=text value="What is the capital of France?" size=100  placeholder="What is the capital of France?" ><br>
+Answer: <input id="myDataExtra" type=text value="The capital of France is Paris." size=100  placeholder="The capital of France is Paris." >
                                          
 <a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="deepset/roberta-base-squad2" placeholder="deepset/roberta-base-squad2">  
   
