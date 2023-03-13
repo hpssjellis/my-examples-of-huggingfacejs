@@ -30,11 +30,13 @@ const objectDetectionRes = await hf.textGeneration({
         
         
         console.log('objectDetectionRes')
-        console.log(objectDetectionRes)
-       
+        console.log(objectDetectionRes)   //generated_text
+
+       console.log('objectDetectionRes.generated_text')
+       console.log(objectDetectionRes.generated_text)
         document.myObjDetect = objectDetectionRes   // make it global
        // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
-        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
+        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes.generated_text, 
                  function (key, value) {
                      if (key == "}") {
                         return "<br>";
