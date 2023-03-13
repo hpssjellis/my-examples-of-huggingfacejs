@@ -10,15 +10,10 @@
         let hf = new document.HfInference(mySentToken)
         document.myHf = hf  // let this be global, also kind of bad programming
 
-        const objectDetectionRes = await hf.summarization({
-            model: mySentModel,
-           inputs: mySentData ,
-            parameters: {
-                 max_length: 100
-            }
-         })
-      
-
+        const objectDetectionRes = await hf.fillMask({
+           model: mySentModel,
+           inputs: mySentData
+        })
         
         console.log('objectDetectionRes')
         console.log(objectDetectionRes)
@@ -60,9 +55,9 @@ Note: Delete and save a blank token to return to the regular rate.<br><br>
        document.getElementById('myEnteredToken').value.slice(-4)
 }"><br><br>
   
-Load this string of text < 100 and it will try to summarize what you have entered<br>  
+Load this string of text and the model will try to find the [MASK] value<br> 
   
-<input id="myDataOrImage" type=text value="The tower is 324 metres (1,063 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become the tallest man-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930." size=100  placeholder="The tower is 324 metres (1,063 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become the tallest man-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930." >
+<input id="myDataOrImage" type=text value="[MASK] world!" size=100  placeholder="[MASK] world!" >
                                          
 <a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="facebook/bart-large-cnn" placeholder="facebook/bart-large-cnn">  
   
