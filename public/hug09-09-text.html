@@ -13,9 +13,9 @@
         const objectDetectionRes = await hf.conversational({
             model: mySentModel,
             inputs: {
-                 past_user_inputs: mySentData,
-                 generated_responses: myOtherData,
-                 text: myOtherData2
+                 past_user_inputs: mySentData.split('\',\''),
+                 generated_responses: myOtherData.split('\',\''),
+                 text: myOtherData2.split('\',\'')
             }
          })
       
