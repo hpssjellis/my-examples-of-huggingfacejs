@@ -49,7 +49,7 @@ const objectDetectionRes = await hf.audioClassification({
        
         document.myObjDetect = objectDetectionRes   // make it global
        // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
-        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes.text, 
+        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
                  function (key, value) {
                      if (key == "}") {
                         return "<br>";
