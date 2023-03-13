@@ -59,6 +59,7 @@ const objectDetectionRes = await hf.imageClassification({
       for (let myLoop = 0; myLoop < objectDetectionRes.length; myLoop++ ) {  
          document.getElementById('myDiv01').innerHTML    += objectDetectionRes[myLoop].label + ': '+  parseInt(objectDetectionRes[myLoop].score*100) + '%'      
      }  
+     }
       
     </script>
   
