@@ -42,6 +42,8 @@ const objectDetectionRes = await hf.imageClassification({
        
         document.myObjDetect = objectDetectionRes   // make it global
        // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
+       
+       /*
         document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
                  function (key, value) {
                      if (key == "}") {
@@ -51,9 +53,11 @@ const objectDetectionRes = await hf.imageClassification({
                      }
                   })
        
+       */
+       
       document.getElementById('myDiv01').innerHTML =  ''                                         
       for (let myLoop = 0; myLoop < objectDetectionRes.length; myLoop++ ) {  
-         document.getElementById('myDiv01').innerHTML    += objectDetectionRes.label + ': '+  parseInt(objectDetectionRes.score*100) + '%'      
+         document.getElementById('myDiv01').innerHTML    += objectDetectionRes[myLoop].label + ': '+  parseInt(objectDetectionRes[myLoop].score*100) + '%'      
      }  
       
     </script>
