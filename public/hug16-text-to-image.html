@@ -40,8 +40,8 @@ const objectDetectionRes = await hf.textToImage({
         document.myObjDetect = objectDetectionRes   // make it global
        // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
       
-      let UAC = new Uint8ClampedArray( objectDetectionRes, 768, 768);
-      let imageData = new ImageData(UAC, 768, 768);
+      let UAC = new Uint8ClampedArray( objectDetectionRes, 256, 256);
+      let imageData = new ImageData(UAC, 256, 256);
 
 		    // Get a reference to the canvas and its context
 	    	let canvas = document.getElementById('myCanvas');
