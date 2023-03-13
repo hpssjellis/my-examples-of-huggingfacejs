@@ -13,7 +13,7 @@
         const objectDetectionRes = await hf.featureExtraction({
             model: mySentModel,
             inputs: {
-                 source_sentence:: mySentData,
+                 source_sentence: mySentData,
                  sentences: myOtherData.split(',')
             }
          })
