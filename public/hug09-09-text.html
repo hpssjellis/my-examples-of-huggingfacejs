@@ -13,9 +13,9 @@
         const objectDetectionRes = await hf.conversational({
             model: mySentModel,
             inputs: {
-                 past_user_inputs: mySentData.split('\',\''),
-                 generated_responses: myOtherData.split('\',\''),
-                 text: myOtherData2.split('\',\'')
+                 past_user_inputs: mySentData.split(','),
+                 generated_responses: myOtherData.split(','),
+                 text: myOtherData2.split(',')
             }
          })
       
@@ -77,9 +77,9 @@ Note: Delete and save a blank token to return to the regular rate.<br><br>
   
 Load these strings of text for a conversational analysis: <br>  
   
-past_user_inputs: <input id="myDataOrImage" type=text value="Which movie is the best ?" size=100  placeholder="'Which movie is the best ?'" ><br>
+past_user_inputs: <input id="myDataOrImage" type=text value="'Which movie is the best?'" size=100  placeholder="'Which movie is the best?'" ><br>
 generated_responses: <input id="myDataExtra" type=text value="'It is Die Hard for sure.'" size=100  placeholder="'It is Die Hard for sure.'" ><br><br>
-text: <input id="myDataExtra2" type=text value="'Can you explain why ?'" size=100  placeholder="'Can you explain why ?'" ><br><br>
+text: <input id="myDataExtra2" type=text value="'Can you explain why?'" size=100  placeholder="'Can you explain why?'" ><br><br>
                                          
 <a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="microsoft/DialoGPT-large" placeholder="microsoft/DialoGPT-large">  
   
