@@ -49,6 +49,16 @@ await hf.featureExtraction({
        
         document.myObjDetect = objectDetectionRes   // make it global
        // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
+       document.getElementById('myDiv01').innerHTML = ''
+       let myLabels = myOtherData.split(',')
+      for (let myLoop =0;  myLoop < objectDetectionRes.length; myLoop++){
+           document.getElementById('myDiv01').innerHTML += myLabels[myLoop] + ': ' + parseInt(objectDetectionRes[0].scores[myLoop] * 100) + '%<br>'   
+       }
+       
+       
+       
+       /*
+       
         document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
                  function (key, value) {
                      if (key == "}") {
@@ -57,6 +67,8 @@ await hf.featureExtraction({
                         return value;
                      }
                   })
+       
+       */
        
      }  
       
