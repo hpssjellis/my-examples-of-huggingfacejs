@@ -48,7 +48,26 @@ const objectDetectionRes = await hf.textToImage({
         console.log('objectDetectionRes')
         console.log(objectDetectionRes)
 	     
-       const myBlobURL = URL.createObjectURL(objectDetectionRes)
+	     
+	  const canvas = document.getElementById("myCanvas");
+          const ctx = canvas.getContext("2d");
+          const img = new Image();
+          img.onload = function() {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+          };
+          img.src = URL.createObjectURL(objectDetectionRes);     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+      // const myBlobURL = URL.createObjectURL(objectDetectionRes)
 	     
 	//console.log('myBlobURL')     
 	//console.log(myBlobURL)     
@@ -57,14 +76,14 @@ const objectDetectionRes = await hf.textToImage({
         document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
       
     //  let UAC = new Uint8ClampedArray( objectDetectionRes, 768, 768);
-      let myImageData = new ImageData(myBlobURL, 768, 768);
+    //  let myImageData = new ImageData(myBlobURL, 768, 768);
 
 		    // Get a reference to the canvas and its context
-	   	let canvas = document.getElementById('myCanvas');
-	    	let context = canvas.getContext('2d');
+	   //	let canvas = document.getElementById('myCanvas');
+	    //	let context = canvas.getContext('2d');
 
 		// Draw the image data onto the canvas
-	    	context.putImageData(myImageData, 0, 0);
+	    //	context.putImageData(myImageData, 0, 0);
 	   // 	context.putImageData(myImgBlob, 0, 0);
       /*
       
