@@ -51,15 +51,16 @@ const objectDetectionRes = await hf.textToImage({
 	     
 	  const canvas = document.getElementById("myCanvas");
           const ctx = canvas.getContext("2d");
-          const img = new Image();
-          img.onload = function() {
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0);
+          const myImg = new Image();
+          myImg.onload = function() {
+            canvas.width = myImg.width;
+            canvas.height = myImg.height;
+            ctx.drawImage(myImg, 0, 0);
           };
-          img.src = URL.createObjectURL(objectDetectionRes);     
+          myImg.src = URL.createObjectURL(objectDetectionRes);     
 	     
-	     
+	  console.log('myImg.src')   
+	  console.log(myImg.src)   
 	     
 	     
 	     
