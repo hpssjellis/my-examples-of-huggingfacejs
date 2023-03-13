@@ -43,10 +43,13 @@
    for (let myLoop = 0; myLoop < document.myObjDetect.length; myLoop++ ) {  
       document.getElementById('myBox'+myLoop).innerText   = document.myObjDetect[myLoop].label + ': '+  parseInt(document.myObjDetect[myLoop].score*100) + '%'  
       document.getElementById('myBox'+myLoop).style.top = document.myObjDetect[myLoop].box.ymin       
-      document.getElementById('myBox'+myLoop).style.left = document.myObjDetect[myLoop].box.xmin        
-      document.getElementById('myBox'+myLoop).style.width = document.myObjDetect[myLoop].box.xmax - document.myObjDetect[myLoop].box.xmin      
+      document.getElementById('myBox'+myLoop).style.left = document.myObjDetect[myLoop].box.xmin     
+     let myWidth = document.myObjDetect[myLoop].box.xmax - document.myObjDetect[myLoop].box.xmin 
+      document.getElementById('myBox'+myLoop).style.width =  myWidth    
       document.getElementById('myBox'+myLoop).style.height = document.myObjDetect[myLoop].box.ymax - document.myObjDetect[myLoop].box.ymin  
-
+      if (myWidth < document.myObjDetect[myLoop].label.length) {
+          document.getElementById('myBox'+myLoop).style.font-size = 'xx-small'
+      }
    }      
        
      }  
