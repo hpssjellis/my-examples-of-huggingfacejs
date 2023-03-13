@@ -10,7 +10,7 @@
         let hf = new document.HfInference(mySentToken)
         document.myHf = hf  // let this be global, also kind of bad programming
 
-        const objectDetectionRes = await hf.summarization({
+        const objectDetectionRes = await hf.questionAnswer({
             model: mySentModel,
             inputs: {
                question: mySentData,
@@ -22,12 +22,12 @@
         
         console.log('objectDetectionRes')
         console.log(objectDetectionRes)
-        console.log('objectDetectionRes.summary_text')
-        console.log(objectDetectionRes.summary_text)
+        console.log('objectDetectionRes.answer')
+        console.log(objectDetectionRes.answer)
        
         document.myObjDetect = objectDetectionRes   // make it global
        // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
-        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes.summary_text, 
+        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
                  function (key, value) {
                      if (key == "}") {
                         return "<br>";
