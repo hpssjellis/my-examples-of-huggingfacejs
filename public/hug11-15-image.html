@@ -80,6 +80,79 @@ const objectDetectionRes = await hf.imageSegmentation({
        
        
       */ 
+  
+       
+       
+      /*
+      
+  Comment options
+
+radames
+2 hours ago
+Collaborator
+hi @hpssjellis I've done this work on this notebook, but here's a fragment you can adapt
+
+  const imageSegRes = await hf.imageSegmentation({
+    data: await FileAttachment("cats.png").blob(),
+    model: "facebook/detr-resnet-50-panoptic"
+  })
+
+  const img = document.querySelector("#image");
+  const canvas = document.querySelector("#canvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = img.width;
+  canvas.height = img.height;
+
+  const masks = await Promise.all(
+    imageSegRes.map(
+      (obj, index) =>
+        new Promise((resolve, _) => {
+          const image = new Image();
+          image.src = "data:image/png;base64," + obj.mask;
+          // make mask transparent
+          image.onload = () => {
+            const maskcolor = d3.rgb(d3.schemePaired[index]);
+            const imgcanvas = document.createElement("canvas");
+            const imgcanvasctx = imgcanvas.getContext("2d");
+            imgcanvas.width = image.width;
+            imgcanvas.height = image.height;
+
+            imgcanvasctx.drawImage(image, 0, 0);
+
+            const imageData = imgcanvasctx.getImageData(
+              0,
+              0,
+              imgcanvas.width,
+              imgcanvas.height
+            );
+            const data = imageData.data;
+
+            for (let i = 0; i < data.length; i += 4) {
+              const white = data[i] === 255;
+              data[i] = maskcolor.r;
+              data[i + 1] = maskcolor.g;
+              data[i + 2] = maskcolor.b;
+              data[i + 3] = white ? 255 : maskcolor.opacity;
+            }
+            imgcanvasctx.putImageData(imageData, 0, 0);
+            resolve(imgcanvas);
+          };
+        })
+    )
+  );
+  ctx.drawImage(img, 0, 0);
+  ctx.globalAlpha = 0.5;
+  masks.forEach((mask) => {
+    ctx.drawImage(mask, 0, 0);
+  });    
+      
+      */
+       
+       
+       
+       
+       
+       
        
        
        
