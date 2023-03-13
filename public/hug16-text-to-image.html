@@ -48,9 +48,10 @@ const objectDetectionRes = await hf.textToImage({
         console.log('objectDetectionRes')
         console.log(objectDetectionRes)
 	     
-  
+       const myBlobURL = URL.createObjectURL(objectDetectionRes)
 	     
-	     
+	console.log('myBlobURL')     
+	console.log(myBlobURL)     
        
       //  document.myObjDetect = objectDetectionRes   // make it global
         document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
