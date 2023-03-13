@@ -16,7 +16,7 @@
            negative_prompt: 'blurry'
         }) 
 	
-	const myNext = await objectDetectionRes.blob())
+	const myNext = await objectDetectionRes.blob()
         const tab = window.open((target = "_blank"));
         tab.location.href = await window.URL.createObjectURL(myNext);
 
