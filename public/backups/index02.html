@@ -1,0 +1,113 @@
+<h2 align=center>Hugginface.js as static webpages</h2>
+
+<li><a href="https://github.com/hpssjellis/my-examples-of-huggingfacejs">This github at https://github.com/hpssjellis/my-examples-of-huggingfacejs</a>
+<li>This website index full link at <br> <a href="https://hpssjellis.github.io/my-examples-of-huggingfacejs/public/index.html">https://hpssjellis.github.io/my-examples-of-huggingfacejs/public/index.html</a>
+
+  Watch out for limits. Basically on a small model I am getting about 20 web page refreshes and then I need a one hour gap. <br>
+  If you are getting hit by limits. right-click--> view source and put the page on your own site to see it work. Strange but I am 
+  even having success from my own harddrive doesn't even seem to need to be a "https" site.<br><br>
+  
+  
+  
+  
+
+  
+  
+  <h1>Start here</h1>
+  
+<ul>
+ <li><a href="hug06-template.html">hug06-template.html</a> A template for most of the pages to come (until I deprecate it)
+<li><a href="hug07-object.html">hug07-object.html</a> Testing image object classification
+<li><a href="hug08-webcam.html">hug08-webcam.html</a> May work on mobile, webcam image data to huggingface with boundingboxes (still has a few issues)
+<li><a href="hug09-text.html">hug9-text.html</a> Text style summarization using facebook/bart-large-cnn
+<ul>
+  <li><a href="hug09-textb.html">hug09-textb.html</a> Text style question answer using deepset/roberta-base-squad2
+  <li><a href="hug09-textc.html">hug09-textc.html</a> Text style classifications.
+  <li><a href="hug09-textd.html">hug09-textd.html</a> Text style classifications.
+  <li><a href="hug09-texte.html">hug09-texte.html</a> Text style classifications.
+  <li><a href="hug09-textf.html">hug09-textf.html</a> Text style classifications.
+  <li><a href="hug09-textg.html">hug09-textg.html</a> Text style classifications.
+  <li><a href="hug09-texth.html">hug09-texth.html</a> Text style classifications.
+  <li><a href="hug09-texti.html">hug09-texti.html</a> Text style classifications.
+  
+</ul>  
+<li><a href="...">..</a>
+<li><a href="...">..</a>
+</ul>
+  
+  
+  
+  <h1>How I got there</h1>
+  
+  
+  
+    
+Most of this page is based on this code<br>
+<textarea rows=20 cols=120 NOWRAP>
+<html>
+  <body>
+    version 0.0.1<br>
+    View the console at ctrl-shift-i (for window or linux)<br>
+    <script type="module">
+        import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
+        const TOKEN = ""
+        let hf = new HfInference(TOKEN)
+
+        const imgBlob = await fetch("https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png")
+            .then((res) => res.blob())
+        const objectDetectionRes = await hf.objectDetection({
+            data: imgBlob,
+            model: "facebook/detr-resnet-50"
+        })
+        console.log(objectDetectionRes)
+    </script>
+  </body>
+</html>  
+</textarea>
+<br>
+<br>
+  
+
+  <hr>
+  
+  
+  
+<ul>
+<li><a href="hug01.html">hug01.html</a> First working HuggingFaceJS see console. This does an image classification so I should be find with those.
+<li><a href="hug01-await.html">hug01-await.html</a> promise to await
+<li><a href="hug02.html">hug02.html</a> Trying the <a href="https://github.com/huggingface/huggingface.js/blob/main/packages/inference/README.md">inference examples</a> 
+  and massively messing up the free rate limit. LOL. Don't run this example as it destroys your un-token rate. The first example hug01.html you can refresh the page about 20 times per hour without a token
+See below hug03-enter-token.html using a free token. I will test how better the rate is.<br>
+    
+  
+<ol> So let's break this down into smaller attempts
+
+   <li><a href="hug02-01.html">hug02-01.html</a> model: facebook/bart-large-cnn
+   <li><a href="hug02-02.html">hug02-02.html</a> model: deepset/roberta-base-squad2
+   <li><a href="hug02-03.html">hug02-03.html</a> model: google/tapas-base-finetuned-wtq
+   <li><a href="hug02-04.html">hug02-04.html</a> model: distilbert-base-uncased-finetuned-sst-2-english
+   <li><a href="hug02-05.html">hug02-05.html</a> model: gpt2
+   <li><a href="hug02-06.html">hug02-06.html</a> model: dbmdz/bert-large-cased-finetuned-conll03-english
+   <li><a href="hug02-07.html">hug02-07.html</a> model: t5-base
+   <li><a href="hug02-08.html">hug02-08.html</a> model: facebook/bart-large-mnli
+   <li><a href="hug02-09.html">hug02-09.html</a> model: microsoft/DialoGPT-large
+   <li><a href="hug02-10.html">hug02-10.html</a> model: sentence-transformers/paraphrase-xlm-r-multilingual-v1
+   <li><a href="hug02-11.html">hug02-11.html</a> model: facebook/wav2vec2-large-960h-lv60-self
+   <li><a href="hug02-12.html">hug02-12.html</a> model: superb/hubert-large-superb-er
+   <li><a href="hug02-13.html">hug02-13.html</a> model: google/vit-base-patch16-224
+   <li><a href="hug02-14.html">hug02-14.html</a> model: facebook/detr-resnet-50
+   <li><a href="hug02-15.html">hug02-15.html</a> model: facebook/detr-resnet-50-panoptic
+   <li><a href="hug02-16.html">hug02-16.html</a> model: stabilityai/stable-diffusion-2
+</ol> 
+<li><a href="hug03-enter-token.html">hug03-enter-token.html</a>Let's try a way to enter your free token from <a href="https://huggingface.co/settings/tokens">https://huggingface.co/settings/tokens</a> to get a better limit
+<li><a href="hug04-local-token-storage.html">hug04-local-token-storage.html</a>  Local storage seems to work, not really secure. NOTE: make it blank and store it to get the regular rate.
+<li><a href="hug05-class.html">hug05-class.html</a> Looking at the main HFInference class. TESTING not yet working
+<hr>
+
+  
+  
+  
+    <br><br>
+  
+  My Main Github <a href="https://github.com/hpssjellis/my-examples-of-huggingfacejs">here</a> and the index of demos <a href="index.html">here<a/>  <br>
+  By <a href="https://twitter.com/rocksetta">@rocksetta<a/> use at your own risk!<br>
