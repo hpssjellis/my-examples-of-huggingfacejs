@@ -16,11 +16,10 @@
            negative_prompt: 'blurry'
         }) 
 	
-	.then((res) => res.blob())
-        .then((blob) => {
-    const tab = window.open((target = "_blank"));
-    tab.location.href = window.URL.createObjectURL(blob);
-  });
+	const myNext = await objectDetectionRes.blob())
+        const tab = window.open((target = "_blank"));
+        tab.location.href = await window.URL.createObjectURL(myNext);
+
         
         
         
