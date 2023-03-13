@@ -1,0 +1,92 @@
+<html>
+  <head>
+     <script type="module">
+      import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
+      document.HfInference = HfInference   // bad coding but I need HfInference to be global
+     </script>
+    
+    <script>
+     myHugginFaceLoad = async function(mySentToken, mySentData, mySentModel){ 
+        let hf = new document.HfInference(mySentToken)
+        document.myHf = hf  // let this be global, also kind of bad programming
+
+        const objectDetectionRes = await hf.translation({
+           model: mySentModel,
+           inputs: mySentData
+        })
+        
+        
+       /*
+       
+
+const objectDetectionRes = await hf.translation({
+  model: 't5-base',
+  inputs: 'My name is Wolfgang and I live in Berlin'
+})  
+       */
+        
+        
+        
+        
+        
+        console.log('objectDetectionRes')
+        console.log(objectDetectionRes)
+       
+        document.myObjDetect = objectDetectionRes   // make it global
+       // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
+        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
+                 function (key, value) {
+                     if (key == "}") {
+                        return "<br>";
+                     }  else {
+                        return value;
+                     }
+                  })
+       
+     }  
+      
+
+    </script>
+  
+  </head> 
+<body onload="{
+   myStorage = localStorage.getItem('myStoredToken')
+   if(myStorage  != null){
+      document.getElementById('myEnteredToken').value = myStorage 
+    }
+}">
+version 0.7.0-61<br>
+  <h2 align=center> Testing HuggingFaceJS</h2>
+Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
+  
+Note: Delete and save a blank token to return to the regular rate.<br><br>  
+<input id="myEnteredToken" type=password size=30>
+<input type="button" value="Store Token Locally" onClick="{
+   localStorage.setItem('myStoredToken', document.getElementById('myEnteredToken').value)
+   document.getElementById('myDiv01').innerHTML = 'Latest Token has been stored containing these last 4 characters: ' +
+       document.getElementById('myEnteredToken').value.slice(-4)
+}"><br><br>
+  
+Load this string of text and see the model do some token classification<br> 
+  
+<input id="myDataOrImage" type=text value="My name is Wolfgang and I live in Berlin" size=100  placeholder="My name is Wolfgang and I live in Berlin" ><br>
+                                         
+<a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="t5-base" placeholder="t5-base">  
+  
+   
+<input type=button value="LOAD Text and Test Model"onclick="{
+    document.getElementById('myDiv01').innerHTML = ''
+    myHugginFaceLoad(document.getElementById('myEnteredToken').value,document.getElementById('myDataOrImage').value,document.getElementById('myModel').value ) 
+                                                       
+}"><br><br>
+  
+
+
+  <div id="myDiv01">...</div> 
+  <br><br>
+  
+  My Main Github <a href="https://github.com/hpssjellis/my-examples-of-huggingfacejs">here</a> and the index of demos <a href="index.html">here<a/>  <br>
+  By <a href="https://twitter.com/rocksetta">@rocksetta<a/> use at your own risk!<br>
+
+</body>
+</html>
