@@ -13,9 +13,9 @@
         const objectDetectionRes = await hf.conversational({
             model: mySentModel,
             inputs: {
-                 past_user_inputs: ['Which movie is the best ?'],
-                 generated_responses: ['It is Die Hard for sure.'],
-                 text: 'Can you explain why ?'
+                 past_user_inputs: mySentData.split(','),
+                 generated_responses: myOtherData.split(','),
+                 text: myOtherData2.split(',')
             }
          })
       
