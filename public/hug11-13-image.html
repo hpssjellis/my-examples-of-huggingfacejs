@@ -1,0 +1,260 @@
+<html>
+  <head>
+     <script type="module">
+      import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
+      document.HfInference = HfInference   // bad coding but I need HfInference to be global
+     </script>
+    
+    <script>
+     myHugginFaceLoad = async function(mySentToken, mySentData, mySentModel){ 
+        let hf = new document.HfInference(mySentToken)
+        document.myHf = hf  // let this be global, also kind of bad prrogramming
+        
+        const myResponse = await fetch(mySentData)  //, {    
+     // method: 'GET',    
+     // withCredentials: true,    
+     // crossorigin: true,    
+     // mode: 'no-cors',       
+     // })
+
+        const myImgBlob = await myResponse.blob();
+        const objectDetectionRes = await hf.imageClassification({
+            data: myImgBlob,
+            model: mySentModel
+        })
+        
+     /*
+   const imgBlob = await fetch("https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cheetah.png")
+            .then((res) => res.blob())       
+const objectDetectionRes = await hf.imageClassification({
+  data: imgBlob,
+  model: 'google/vit-base-patch16-224'
+})  
+     */
+        
+        
+        
+        
+        console.log('objectDetectionRes')
+        console.log(objectDetectionRes)
+        console.log('objectDetectionRes[0].label')
+        console.log(objectDetectionRes[0].label)
+       
+        document.myObjDetect = objectDetectionRes   // make it global
+       // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
+        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
+                 function (key, value) {
+                     if (key == "}") {
+                        return "<br>";
+                     }  else {
+                        return value;
+                     }
+                  })
+       
+       
+                                                
+   for (let myLoop = 0; myLoop < document.myObjDetect.length; myLoop++ ) {  
+      document.getElementById('myBox'+myLoop).innerText   = document.myObjDetect[myLoop].label + ': '+  parseInt(document.myObjDetect[myLoop].score*100) + '%'  
+      document.getElementById('myBox'+myLoop).style.top = document.myObjDetect[myLoop].box.ymin       
+      document.getElementById('myBox'+myLoop).style.left = document.myObjDetect[myLoop].box.xmin     
+     let myWidth = document.myObjDetect[myLoop].box.xmax - document.myObjDetect[myLoop].box.xmin 
+      document.getElementById('myBox'+myLoop).style.width =  myWidth    
+      document.getElementById('myBox'+myLoop).style.height = document.myObjDetect[myLoop].box.ymax - document.myObjDetect[myLoop].box.ymin 
+     let myConvert = 20   // convert from the label length to approximate pixel length. Totally guessing
+     /*
+     console.log('document.myObjDetect[myLoop].label')
+     console.log(document.myObjDetect[myLoop].label)
+     console.log('myWidth')
+     console.log(myWidth)
+     console.log('document.myObjDetect[myLoop].label.length* myConvert')
+     console.log(document.myObjDetect[myLoop].label.length*myConvert)
+     
+     */
+      if (myWidth < myConvert * document.myObjDetect[myLoop].label.length) {
+          document.getElementById('myBox'+myLoop).style.fontSize = 'xx-small'
+      } else {
+          document.getElementById('myBox'+myLoop).style.fontSize = 'xx-large'
+      }
+   }      
+       
+     }  
+      
+    </script>
+  
+  </head> 
+<body onload="{
+   myStorage = localStorage.getItem('myStoredToken')
+   if(myStorage  != null){
+      document.getElementById('myEnteredToken').value = myStorage 
+    }
+}">
+
+<img id="myDataDisplay" style="position:absolute; left;0px; top:0px; display: inline-block; " src="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cheetah.png" /><br>
+
+  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br> <br><br> <br><br> 
+version 0.6.0-60<br>
+  <h2 align=center> Testing HuggingFaceJS</h2>
+Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
+  
+Note: Delete and save a blank token to return to the regular rate.<br><br>  
+<input id="myEnteredToken" type=password size=30>
+<input type="button" value="Store Token Locally" onClick="{
+   localStorage.setItem('myStoredToken', document.getElementById('myEnteredToken').value)
+   document.getElementById('myDiv01').innerHTML = 'Latest Token has been stored containing these last 4 characters: ' +
+       document.getElementById('myEnteredToken').value.slice(-4)
+}"><br><br>
+  
+Load the URL of the image to Analyse:<br>  
+
+<input id="myDataOrImage" type=text value="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cheetah.png" size=100  placeholder="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cheetah.png" >
+<input id="myLoadButton" type=button value="Load Data/Image" onclick="{
+
+  document.getElementById('myDataDisplay').src = document.getElementById('myDataOrImage').value
+  for (let myLoop = 0; myLoop < 10; myLoop++ ) {   // hide the boxes
+      document.getElementById('myBox'+myLoop).style.left = '-50px'       
+      document.getElementById('myBox'+myLoop).style.width = '10px'       
+      document.getElementById('myBox'+myLoop).style.height = '10px'       
+  }                                          
+                                                    
+}" > <br> 
+  
+  <a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="google/vit-base-patch16-224" placeholder="google/vit-base-patch16-224">  
+  
+   
+<input id="myDetectButton" type=button value="Load Image and Object Detect"onclick="{
+    document.getElementById('myLoadButton').click()   // Load the latest image                                                           
+    document.getElementById('myDiv01').innerHTML = ''
+    myHugginFaceLoad(document.getElementById('myEnteredToken').value,document.getElementById('myDataOrImage').value,document.getElementById('myModel').value ) 
+                                                       
+}"><br><br>
+  
+
+
+
+  <div id="myDiv01">...</div> 
+  <br><br>
+  
+  My Main Github <a href="https://github.com/hpssjellis/my-examples-of-huggingfacejs">here</a> and the index of demos <a href="index.html">here<a/>  <br>
+  By <a href="https://twitter.com/rocksetta">@rocksetta<a/> use at your own risk!<br>
+  
+
+
+
+<b id="myBox0" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox1" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox2" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox3" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox4" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox5" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox6" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox7" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox8" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+<b id="myBox9" style="border-Style:solid;  border-color:red;   position:absolute; left:-50px; top:50px; width:40px; height:30px; color:red;">...</b>
+  
+  
+  
+  
+
+  
+    <input type="button" value="Switch orientation2" onclick="{
+     if   (screen.height > screen.width) {
+        // alert('portrat') 
+        myCanvas.width = 480;
+        myCanvas.height = 640;                                                     
+      } else {
+        //alert('landscape')
+        myCanvas.width = 640;
+        myCanvas.height = 480;
+      }                                                     
+                                                             
+    }">  
+  
+    <select id="camera-select" onChange="{ getStream2(); }">
+      <option value="user" SELECT>Front Camera</option>
+      <option value="environment">Back Camera</option>
+    </select>
+  
+  
+    <input type="button" value="Take Picture and Object Detect" onclick="convert()">  <br>
+  
+  
+
+    <video id="myVideoTag" width="640" height="480"></video> 
+    
+    <canvas id="myCanvasTag" ></canvas>
+    <br>
+
+    <script>
+      // Get video element and create canvas element
+      const myVideo = document.getElementById('myVideoTag');
+      const myCanvas = document.getElementById('myCanvasTag');
+     // const myCanvas = document.createElement('canvas');
+      myCanvas.width = myVideo.width;
+      myCanvas.height = myVideo.height;
+      
+      // Function to get webcam stream
+      async function getStream() {
+
+      try {
+          const myStream = await navigator.mediaDevices.getUserMedia({video: true});
+          myVideo.srcObject = myStream;
+          myVideo.play();
+        } catch (error) {
+          console.error('Error accessing webcam:', error);
+        }
+      }
+      
+       async function getStream2() {
+
+        if (myVideo.srcObject) {
+           myVideo.srcObject.getTracks().forEach(track => {
+             myVideo.srcObject.removeTrack(track);
+             track.stop();
+           });
+          myVideo.srcObject = null
+        }
+        
+        const myConstraints = {
+          video: {
+            facingMode: document.getElementById('camera-select').value 
+          }
+        };
+
+
+      try {
+          const myStream = await navigator.mediaDevices.getUserMedia(myConstraints);
+          myVideo.srcObject = myStream;
+          myVideo.play();
+        } catch (error) {
+          console.error('Error accessing webcam:', error);
+        }
+      }
+      getStream();
+
+      // Function to convert video to base64 image
+      async function convert() {
+        
+      const myCanvas = document.getElementById('myCanvasTag');
+        // Draw current video frame onto canvas
+        const myCtx = myCanvas.getContext('2d');
+        myCtx.drawImage(myVideo, 0, 0, myCanvas.width, myCanvas.height);
+        
+        // Convert canvas to base64 image
+        const myBase64Image = myCanvas.toDataURL('image/png');
+        document.getElementById('myDataOrImage').value = myBase64Image
+        
+            document.getElementById('myDetectButton').click()   // Load this image and object detect on it     
+        // Do something with the base64 image (e.g. display it in an img tag)
+       // const myImg = document.createElement('img');
+       // myImg.src = myBase64Image;
+       // document.body.appendChild(myImg);
+      }
+    </script>
+  
+  
+  
+  
+  
+
+</body>
+</html>
