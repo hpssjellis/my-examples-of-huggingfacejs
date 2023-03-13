@@ -14,7 +14,13 @@
            model: mySentModel,
            inputs: mySentData,
            negative_prompt: 'blurry'
-        })
+        }) 
+	
+	.then((res) => res.blob())
+        .then((blob) => {
+    const tab = window.open((target = "_blank"));
+    tab.location.href = window.URL.createObjectURL(blob);
+  });
         
         
         
