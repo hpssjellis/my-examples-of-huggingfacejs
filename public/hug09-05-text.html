@@ -69,14 +69,14 @@ Note: Delete and save a blank token to return to the regular rate.<br><br>
        document.getElementById('myEnteredToken').value.slice(-4)
 }"><br><br>
   
-Load this string of text and the model will try to find the [MASK] value<br> 
+Load this string of text and see the text generation possibilities<br> 
   
 <input id="myDataOrImage" type=text value="The answer to the universe is" size=100  placeholder="The answer to the universe is" ><br>
                                          
 <a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="gpt2" placeholder="gpt2">  
   
    
-<input type=button value="LOAD Text and Test Model"onclick="{
+<input type=button value="LOAD Text and Test Model" onclick="{
     document.getElementById('myDiv01').innerHTML = ''
     myHugginFaceLoad(document.getElementById('myEnteredToken').value,document.getElementById('myDataOrImage').value,document.getElementById('myModel').value ) 
                                                        
