@@ -33,7 +33,9 @@ const objectDetectionRes = await hf.translation({
         console.log(objectDetectionRes)
        
         document.myObjDetect = objectDetectionRes   // make it global
-       // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
+        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes.translation_text) 
+       
+       /*
         document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
                  function (key, value) {
                      if (key == "}") {
@@ -42,6 +44,7 @@ const objectDetectionRes = await hf.translation({
                         return value;
                      }
                   })
+       */
        
      }  
       
@@ -67,7 +70,7 @@ Note: Delete and save a blank token to return to the regular rate.<br><br>
        document.getElementById('myEnteredToken').value.slice(-4)
 }"><br><br>
   
-Load this string of text and see the model do some token classification<br> 
+Load this string of text and see the model translate English to German<br> 
   
 <input id="myDataOrImage" type=text value="My name is Wolfgang and I live in Berlin" size=100  placeholder="My name is Wolfgang and I live in Berlin" ><br>
                                          
