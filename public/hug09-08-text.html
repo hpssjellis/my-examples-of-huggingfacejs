@@ -43,7 +43,7 @@
        document.getElementById('myDiv01').innerHTML = ''
        
        for (let myLoop =0;  myLoop < objectDetectionRes[0].labels.length; myLoop++){
-           document.getElementById('myDiv01').innerHTML +=  objectDetectionRes[0].labels[myLoop] + ', ' + parseInt(objectDetectionRes[0].scores[myLoop] * 100) + '%'   
+           document.getElementById('myDiv01').innerHTML +=  objectDetectionRes[0].labels[myLoop] + ': ' + parseInt(objectDetectionRes[0].scores[myLoop] * 100) + '%<br>'   
        }
        
        /*
