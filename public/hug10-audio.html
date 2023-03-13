@@ -11,13 +11,7 @@
         document.myHf = hf  // let this be global, also kind of bad programming
         
        
-      /*
-      await hf.automaticSpeechRecognition({
-        model: 'facebook/wav2vec2-large-960h-lv60-self',
-        data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac')
-      })
-      
-      */
+
        
        
        
@@ -28,10 +22,23 @@
        
         const myResponse = await fetch(mySentData)
         const myImgBlob = await myResponse.blob();
-        const objectDetectionRes = await hf.objectDetection({
+        const objectDetectionRes = await hf.automaticSpeechRecognition({
             data: myImgBlob,
             model: mySentModel
         })
+        
+        
+        
+        
+              /*
+      await hf.automaticSpeechRecognition({
+        model: 'facebook/wav2vec2-large-960h-lv60-self',
+        data: readFileSync('https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac')
+      })
+      
+      */
+        
+        
         
         console.log('objectDetectionRes')
         console.log(objectDetectionRes)
@@ -81,29 +88,23 @@ Note: Delete and save a blank token to return to the regular rate.<br><br>
        document.getElementById('myEnteredToken').value.slice(-4)
 }"><br>
   
-Load the URL of the image to Analyse:<br>  
+Load the URL of the audio to Analyse:<br>  
+ 
+  <audio controls id="myDataDisplay">
+    <source src="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac" > 
+</audio>
   
-<input id="myDataOrImage" type=text value="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" size=100  placeholder="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" >
+  
+<input id="myDataOrImage" type=text value="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac" size=100  placeholder="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/sample1.flac" >
 <input type=button value="Load Data/Image" onclick="{
  // myImageLoad('myDataOrImage') 
   document.getElementById('myDataDisplay').src = document.getElementById('myDataOrImage').value
                                                     
-/*     
-   //.then(r => r.json())
-   .then(r => myImg.src = r.primaryImage);
-
-                                                    
                                          
                                                     
-    const imageBlob = await fetchImage(url)
-  const imageBase64 = URL.createObjectURL(imageBlob)                                                  
-                                                    
-                                                    
-         */                                           
-                                                    
-}" > <br> <img id="myDataDisplay" width=300 src="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" /><br>
+}" > <br>
   
-  <a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="facebook/detr-resnet-50" placeholder="facebook/detr-resnet-50">  
+  <a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="facebook/wav2vec2-large-960h-lv60-self" placeholder="facebook/wav2vec2-large-960h-lv60-self">  
   
    
 <input type=button value="LOAD and Test Model"onclick="{
