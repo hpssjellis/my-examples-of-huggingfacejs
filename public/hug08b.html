@@ -48,7 +48,11 @@
       document.getElementById('myBox'+myLoop).style.width =  myWidth    
       document.getElementById('myBox'+myLoop).style.height = document.myObjDetect[myLoop].box.ymax - document.myObjDetect[myLoop].box.ymin 
      let myConvert = 20   // convert from the label length to approximate pixel length. totally guessing
-      if (myWidth < myConvert *document.myObjDetect[myLoop].label.length) {
+     console.log('myConvert')
+     console.log(myConvert)
+     console.log('document.myObjDetect[myLoop].label.length')
+     console.log(document.myObjDetect[myLoop].label.length)
+      if (myWidth < myConvert * document.myObjDetect[myLoop].label.length) {
           document.getElementById('myBox'+myLoop).style.fontSize = 'xx-small'
       }
    }      
