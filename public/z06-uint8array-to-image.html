@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Uint8Array to Image</title>
-</head>
-<body>
-	<canvas id="canvas"></canvas>
-	<script>
-		const canvas = document.getElementById("canvas");
-		const ctx = canvas.getContext("2d");
+  <head>
+    <meta charset="utf-8">
+    <title>Uint8Array to Image on Canvas</title>
+  </head>
+  <body>
+    <canvas id="myCanvas"></canvas>
 
-		// Create a sample Uint8Array
-		const uint8Array = new Uint8Array([255, 0, 0, 255, 0, 255, 255, 255, 0, 0, 255, 255]);
+    <script>
+      // Example data
+      const data = new Uint8Array([255, 0, 0, 255, 255, 255, 0, 0, 255]);
 
-		// Create a new ImageData object from the Uint8Array
-		const imageData = new ImageData(uint8Array, 2);
+      // Create an ImageData object from the data
+      const imageData = new ImageData(data, 3, 1);
 
-		// Set the canvas width and height to match the ImageData
-		canvas.width = imageData.width;
-		canvas.height = imageData.height;
+      // Get the canvas element
+      const canvas = document.getElementById('myCanvas');
 
-		// Draw the ImageData onto the canvas
-		ctx.putImageData(imageData, 0, 0);
-	</script>
-</body>
+      // Set the canvas width and height to match the ImageData
+      canvas.width = imageData.width;
+      canvas.height = imageData.height;
+
+      // Get the 2D context for the canvas
+      const ctx = canvas.getContext('2d');
+
+      // Draw the ImageData onto the canvas
+      ctx.putImageData(imageData, 0, 0);
+    </script>
+  </body>
 </html>
