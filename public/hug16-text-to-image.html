@@ -60,11 +60,11 @@ const objectDetectionRes = await hf.textToImage({
     //  let imageData = new ImageData(UAC, 768, 768);
 
 		    // Get a reference to the canvas and its context
-	   // 	let canvas = document.getElementById('myCanvas');
-	  //  	let context = canvas.getContext('2d');
+	   	let canvas = document.getElementById('myCanvas');
+	    	let context = canvas.getContext('2d');
 
 		// Draw the image data onto the canvas
-	    //	context.putImageData(imageData, 0, 0);
+	    	context.putImageData(myBlobURL, 0, 0);
 	   // 	context.putImageData(myImgBlob, 0, 0);
       /*
       
@@ -95,7 +95,7 @@ const objectDetectionRes = await hf.textToImage({
 version 0.7.0-61<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
 Output in the div below. Works without personal token just stops after about 20 loads or refreshes per hour<br>
- 	<canvas id="myCanvas" width="400" height="400"></canvas> 
+<canvas id="myCanvas" width="768" height="768"></canvas> 
 Note: Delete and save a blank token to return to the regular rate.<br><br>  
 <input id="myEnteredToken" type=password size=30>
 <input type="button" value="Store Token Locally" onClick="{
