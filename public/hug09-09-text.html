@@ -6,28 +6,30 @@
      </script>
     
     <script>
-     myHugginFaceLoad = async function(mySentToken, mySentData, mySentModel, myOtherData){ 
+     myHugginFaceLoad = async function(mySentToken, mySentData, mySentModel, myOtherData, myOtherData2){ 
         let hf = new document.HfInference(mySentToken)
         document.myHf = hf  // let this be global, also kind of bad programming
 
-        const objectDetectionRes = await hf.zeroShotClassification({
+        const objectDetectionRes = await hf.conversational({
             model: mySentModel,
-            inputs: [
-               mySentData 
-            ],
-            parameters: { candidate_labels: [myOtherData] }
+            inputs: {
+                 past_user_inputs: ['Which movie is the best ?'],
+                 generated_responses: ['It is Die Hard for sure.'],
+                 text: 'Can you explain why ?'
+            }
          })
       
 
         
      /*
-    const objectDetectionRes = await hf.zeroShotClassification({
-  model: 'facebook/bart-large-mnli',
-  inputs: [
-    'Hi, I recently bought a device from your company but it is not working as advertised and I would like to get reimbursed!'
-  ],
-  parameters: { candidate_labels: ['refund', 'legal', 'faq'] }
-}) 
+const objectDetectionRes = await hf.conversational({
+  model: 'microsoft/DialoGPT-large',
+  inputs: {
+    past_user_inputs: ['Which movie is the best ?'],
+    generated_responses: ['It is Die Hard for sure.'],
+    text: 'Can you explain why ?'
+  }
+})
      
      */
         
@@ -75,15 +77,17 @@ Note: Delete and save a blank token to return to the regular rate.<br><br>
   
 Load these strings of text for a zero Shot Classification:<br>  
   
-Input: <input id="myDataOrImage" type=text value="Hi, I recently bought a device from your company but it is not working as advertised and I would like to get reimbursed!" size=100  placeholder="Hi, I recently bought a device from your company but it is not working as advertised and I would like to get reimbursed!" ><br>
-Candidate Labels: <input id="myDataExtra" type=text value="'refund', 'legal', 'faq'" size=100  placeholder="'refund', 'legal', 'faq'" ><br><br>
+past_user_inputs: <input id="myDataOrImage" type=text value="Hi, I recently bought a device from your company but it is not working as advertised and I would like to get reimbursed!" size=100  placeholder="Hi, I recently bought a device from your company but it is not working as advertised and I would like to get reimbursed!" ><br>
+generated_responses: <input id="myDataExtra" type=text value="'refund', 'legal', 'faq'" size=100  placeholder="'refund', 'legal', 'faq'" ><br><br>
+text: <input id="myDataExtra2" type=text value="'refund', 'legal', 'faq'" size=100  placeholder="'refund', 'legal', 'faq'" ><br><br>
                                          
-<a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="facebook/bart-large-mnli" placeholder="facebook/bart-large-mnli">  
+<a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="microsoft/DialoGPT-large" placeholder="microsoft/DialoGPT-large">  
   
    
 <input type=button value="LOAD Text and Test Model"onclick="{
     document.getElementById('myDiv01').innerHTML = ''
-    myHugginFaceLoad(document.getElementById('myEnteredToken').value, document.getElementById('myDataOrImage').value, document.getElementById('myModel').value,  document.getElementById('myDataExtra').value ) 
+    myHugginFaceLoad(document.getElementById('myEnteredToken').value, document.getElementById('myDataOrImage').value, 
+      document.getElementById('myModel').value,  document.getElementById('myDataExtra').value,  document.getElementById('myDataExtra2').value ) 
                                                        
 }"><br><br>
   
