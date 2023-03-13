@@ -51,32 +51,9 @@ const objectDetectionRes = await hf.imageClassification({
                      }
                   })
        
-       
-                                                
-   for (let myLoop = 0; myLoop < document.myObjDetect.length; myLoop++ ) {  
-      document.getElementById('myBox'+myLoop).innerText   = document.myObjDetect[myLoop].label + ': '+  parseInt(document.myObjDetect[myLoop].score*100) + '%'  
-      document.getElementById('myBox'+myLoop).style.top = document.myObjDetect[myLoop].box.ymin       
-      document.getElementById('myBox'+myLoop).style.left = document.myObjDetect[myLoop].box.xmin     
-     let myWidth = document.myObjDetect[myLoop].box.xmax - document.myObjDetect[myLoop].box.xmin 
-      document.getElementById('myBox'+myLoop).style.width =  myWidth    
-      document.getElementById('myBox'+myLoop).style.height = document.myObjDetect[myLoop].box.ymax - document.myObjDetect[myLoop].box.ymin 
-     let myConvert = 20   // convert from the label length to approximate pixel length. Totally guessing
-     /*
-     console.log('document.myObjDetect[myLoop].label')
-     console.log(document.myObjDetect[myLoop].label)
-     console.log('myWidth')
-     console.log(myWidth)
-     console.log('document.myObjDetect[myLoop].label.length* myConvert')
-     console.log(document.myObjDetect[myLoop].label.length*myConvert)
-     
-     */
-      if (myWidth < myConvert * document.myObjDetect[myLoop].label.length) {
-          document.getElementById('myBox'+myLoop).style.fontSize = 'xx-small'
-      } else {
-          document.getElementById('myBox'+myLoop).style.fontSize = 'xx-large'
-      }
-   }      
-       
+      document.getElementById('myDiv01').innerHTML =   = ''                                         
+      for (let myLoop = 0; myLoop < objectDetectionRes.length; myLoop++ ) {  
+         document.getElementById('myDiv01').innerHTML    += objectDetectionRes.label + ': '+  parseInt(objectDetectionRes.score*100) + '%'      
      }  
       
     </script>
