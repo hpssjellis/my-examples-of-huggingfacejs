@@ -6,36 +6,40 @@
      </script>
     
     <script>
-     myHugginFaceLoad = async function(mySentToken, mySentData, mySentModel){ 
+     myHugginFaceLoad = async function(mySentToken, mySentData, mySentModel, myOtherData){ 
         let hf = new document.HfInference(mySentToken)
         document.myHf = hf  // let this be global, also kind of bad programming
 
-        const objectDetectionRes = await hf.translation({
-           model: mySentModel,
-           inputs: mySentData
-        })
-        
-        
-       /*
-       
+        const objectDetectionRes = await hf.zeroShotClassification({
+            model: mySentModel,
+            inputs: [
+               mySentData 
+            ],
+            parameters: { candidate_labels: myOtherData }
+         })
+      
 
-const objectDetectionRes = await hf.translation({
-  model: 't5-base',
-  inputs: 'My name is Wolfgang and I live in Berlin'
-})  
-       */
         
-        
+     /*
+    const objectDetectionRes = await hf.zeroShotClassification({
+  model: 'facebook/bart-large-mnli',
+  inputs: [
+    'Hi, I recently bought a device from your company but it is not working as advertised and I would like to get reimbursed!'
+  ],
+  parameters: { candidate_labels: ['refund', 'legal', 'faq'] }
+}) 
+     
+     */
         
         
         
         console.log('objectDetectionRes')
         console.log(objectDetectionRes)
+        console.log('objectDetectionRes.answer')
+        console.log(objectDetectionRes.answer)
        
         document.myObjDetect = objectDetectionRes   // make it global
-        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes.translation_text) 
-       
-       /*
+       // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
         document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
                  function (key, value) {
                      if (key == "}") {
@@ -44,7 +48,6 @@ const objectDetectionRes = await hf.translation({
                         return value;
                      }
                   })
-       */
        
      }  
       
@@ -70,16 +73,17 @@ Note: Delete and save a blank token to return to the regular rate.<br><br>
        document.getElementById('myEnteredToken').value.slice(-4)
 }"><br><br>
   
-Load this string of text and see the model translate English to German<br> 
+Load these strings of text for a zero Shot Classification:<br>  
   
-<input id="myDataOrImage" type=text value="My name is Wolfgang and I live in Berlin" size=100  placeholder="My name is Wolfgang and I live in Berlin" ><br>
+Input: <input id="myDataOrImage" type=text value=Hi, I recently bought a device from your company but it is not working as advertised and I would like to get reimbursed!" size=100  placeholder="Hi, I recently bought a device from your company but it is not working as advertised and I would like to get reimbursed!" ><br>
+Candidate Labels: <input id="myDataExtra" type=text value="['refund', 'legal', 'faq']" size=100  placeholder="['refund', 'legal', 'faq']" ><br><br>
                                          
-<a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="t5-base" placeholder="t5-base">  
+<a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="facebook/bart-large-mnli" placeholder="facebook/bart-large-mnli">  
   
    
 <input type=button value="LOAD Text and Test Model"onclick="{
     document.getElementById('myDiv01').innerHTML = ''
-    myHugginFaceLoad(document.getElementById('myEnteredToken').value,document.getElementById('myDataOrImage').value,document.getElementById('myModel').value ) 
+    myHugginFaceLoad(document.getElementById('myEnteredToken').value, document.getElementById('myDataOrImage').value, document.getElementById('myModel').value,  document.getElementById('myDataExtra').value ) 
                                                        
 }"><br><br>
   
