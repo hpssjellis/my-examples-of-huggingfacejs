@@ -27,7 +27,7 @@
        
         document.myObjDetect = objectDetectionRes   // make it global
        // document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes) 
-        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes, 
+        document.getElementById('myDiv01').innerHTML = JSON.stringify(objectDetectionRes.summary_text, 
                  function (key, value) {
                      if (key == "}") {
                         return "<br>";
@@ -38,15 +38,7 @@
        
      }  
       
-    
-     myImageLoad = async function(myEnteredImageURL){  
-        const myImg = document.getElementById(myEnteredImageURL);
 
-        const myResponse = await fetch(document.getElementById('myDataOrImage').value)
-        const myBlob = await myResponse.blob()
-        const myImageBase64 = URL.createObjectURL(myBlob) 
-        myImg.src  =   myImageBase64       
-      }
     </script>
   
   </head> 
@@ -72,9 +64,7 @@ Load this string of text < 100 characters to Analyse:<br>
   
 <input id="myDataOrImage" type=text value="The tower is 324 metres (1,063 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become the tallest man-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930." size=100  placeholder="The tower is 324 metres (1,063 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become the tallest man-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930." >
                                          
-                                                    
- 
-  <a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="facebook/detr-resnet-50" placeholder="facebook/detr-resnet-50">  
+<a href="https://huggingface.co/models">HuggingFace Model Hub</a> label of the model to use: <input id="myModel" type=text value="facebook/bart-large-cnn" placeholder="facebook/bart-large-cnn">  
   
    
 <input type=button value="LOAD Text and Test Model"onclick="{
