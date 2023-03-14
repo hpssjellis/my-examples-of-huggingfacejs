@@ -1,11 +1,5 @@
 <html>
   <head>
-    
-    <script src= "https://d3js.org/d3.v4.min.js"></script> 
-    <script src= "https://d3js.org/d3-color.v1.min.js"></script> 
-    <script src= "https://d3js.org/d3-interpolate.v1.min.js"></script> 
-    <script src= "https://d3js.org/d3-scale-chromatic.v1.min.js"></script> 
-    
      <script type="module">
       import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
       document.HfInference = HfInference   // bad coding but I need HfInference to be global
@@ -102,17 +96,15 @@ hi @hpssjellis I've done this work on this notebook, but here's a fragment you c
     data: await FileAttachment("cats.png").blob(),
     model: "facebook/detr-resnet-50-panoptic"
   })
-  
-  */
 
-  const img = document.getElementById("myDataDisplay");
-  const canvas = document.getElementById("myCanvasTag2");
+  const img = document.querySelector("#image");
+  const canvas = document.querySelector("#canvas");
   const ctx = canvas.getContext("2d");
   canvas.width = img.width;
   canvas.height = img.height;
 
   const masks = await Promise.all(
-    objectDetectionRes.map(
+    imageSegRes.map(
       (obj, index) =>
         new Promise((resolve, _) => {
           const image = new Image();
@@ -153,7 +145,8 @@ hi @hpssjellis I've done this work on this notebook, but here's a fragment you c
   masks.forEach((mask) => {
     ctx.drawImage(mask, 0, 0);
   });    
- 
+      
+      */
        
        
        
@@ -175,11 +168,8 @@ hi @hpssjellis I've done this work on this notebook, but here's a fragment you c
     }
 }">
 
-<img id="myDataDisplay" style="position:absolute; left;0px; top:0px;  " src="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" /><br>
+<img id="myDataDisplay" style="position:absolute; left;0px; top:0px; display: inline-block; " src="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" /><br>
 
-    <canvas id="myCanvasTag2"style="position:absolute; left;600px; top:0px; " ></canvas>
-  
-  
   <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br> <br><br> <br><br> 
 version 0.6.0-60<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
