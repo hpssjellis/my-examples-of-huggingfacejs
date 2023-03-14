@@ -120,7 +120,7 @@ hi @hpssjellis I've done this work on this notebook, but here's a fragment you c
           // make mask transparent
           image.onload = () => {
             const maskcolor = d3.rgb(d3.schemePaired[index]);
-            const imgcanvas = document.createElement("image");
+            const imgcanvas = document.createElement("canvas");
             const imgcanvasctx = imgcanvas.getContext("2d");
             imgcanvas.width = image.width;
             imgcanvas.height = image.height;
