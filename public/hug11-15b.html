@@ -116,7 +116,7 @@ hi @hpssjellis I've done this work on this notebook, but here's a fragment you c
           // make mask transparent
           image.onload = () => {
             const maskcolor = d3.rgb(d3.schemePaired[index]);
-            const imgcanvas = document.createElement("myCanvasTag3");
+            const imgcanvas = document.createElement("image");
             const imgcanvasctx = imgcanvas.getContext("2d");
             imgcanvas.width = image.width;
             imgcanvas.height = image.height;
@@ -174,7 +174,6 @@ hi @hpssjellis I've done this work on this notebook, but here's a fragment you c
 <img id="myDataDisplay" style="position:absolute; left;0px; top:0px; display: inline-block; " src="https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png" /><br>
 
     <canvas id="myCanvasTag2" ></canvas>
-    <canvas id="myCanvasTag3" ></canvas>
   <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br>  <br><br> <br><br> <br><br> 
 version 0.6.0-60<br>
   <h2 align=center> Testing HuggingFaceJS</h2>
