@@ -33,3 +33,10 @@ April 22, 2023
 SAM segmentanything model is now on huggingface
 
 https://huggingface.co/docs/transformers/main/en/model_doc/sam
+
+
+
+Random cool huggingface examples
+
+3D object maker. Can I use this with blender.org?
+https://huggingface.co/spaces/One-2-3-45/One-2-3-45
