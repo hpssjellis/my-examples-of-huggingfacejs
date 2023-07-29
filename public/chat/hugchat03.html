@@ -1,13 +1,16 @@
-<!-- polyfill for firefox + import maps   <script src="https://unpkg.com/es-module-shims@1.7.0/dist/es-module-shims.js"></script> -->
+<!-- polyfill for firefox + import maps   
+<script src="https://unpkg.com/es-module-shims@1.7.0/dist/es-module-shims.js"></script> 
+-->
 <script type="importmap">
    {"imports": {"@huggingface/inference": "https://cdn.jsdelivr.net/npm/@huggingface/inference@1.7.1/+esm"}}
 </script>
 
 
-<h6> version 0.2.2-12</h6>
+<h6> version 0.3.0-14</h6>
+<h3 align=center>Hugginface single page Javascript Open Souce Chat</h3>
 Running model: <span id="myModel">...</span> <br>
 Prompt: <input type="text" value="What is a large language model" id="myPrompt"> <br>
-Token ID(optional): <input type="password" value="" id="myTokenID"> <br>
+Token ID(faster): <input type="password" value="" id="myTokenID">  <a href="https://huggingface.co/settings/tokens"> token signup</a> <br>
 
 Output: <span id="myOutput">...</span> <br>
 
@@ -20,33 +23,25 @@ Output: <span id="myOutput">...</span> <br>
 import { HfInference } from "@huggingface/inference";
 let running = false;
 async function launch() {
-	if (running) {
-		return;
-	}
-	running = true;
-	try {
-		const hf = new HfInference(
-			document.getElementById("myTokenID").value.trim() || undefined
-		);
-		const model = "google/flan-t5-xxl";  //document.getElementById("model").value.trim();  // set this
-		document.getElementById("myModel").innerHTML = `<b>${model}</b>`;
+if (running) {return;}
+  running = true;
+  try {
+    const hf = new HfInference(document.getElementById("myTokenID").value.trim() || undefined);
+	  
+    // models at         https://huggingface.co/models?pipeline_tag=text2text-generation&sort=likes
+    // some need a paid account
+    const model = "google/flan-t5-xxl";  //document.getElementById("model").value.trim();  // set this
+    document.getElementById("myModel").innerHTML = `<b>${model}</b>`;
 		
-		const prompt = document.getElementById("myPrompt").value.trim();
-		document.getElementById("myOutput").innerHTML = "";
-		for await (const output of hf.textGenerationStream({
-			model,
-			inputs: prompt,
-			parameters: { max_new_tokens: 250 }
-		}, {
-			use_cache: false
-		})) {
-			document.getElementById("myOutput").innerHTML += output.token.text;
-		}
-	} catch (err) {
-		alert("Error: " + err.message);
-	} finally {
-		running = false;
-	}
-}
-window.launch = launch;
+    const prompt = document.getElementById("myPrompt").value.trim();
+    document.getElementById("myOutput").innerHTML = "";
+    for await (const output of hf.textGenerationStream({model,inputs: prompt,parameters: { max_new_tokens: 250 }}, {use_cache: false})) {
+      document.getElementById("myOutput").innerHTML += output.token.text;
+    }
+  } catch (err) {
+      alert("Error: " + err.message);
+  } 
+    finally {running = false;}
+  }
+  window.launch = launch;
 </script>
