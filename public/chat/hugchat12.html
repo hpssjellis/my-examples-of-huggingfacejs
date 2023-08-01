@@ -1,0 +1,63 @@
+
+<!-- helps to convert markdown output from the chat into HTML -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.js"></script> 
+
+<!-- polyfill for firefox + import maps   
+<script src="https://unpkg.com/es-module-shims@1.7.0/dist/es-module-shims.js"></script> 
+-->
+
+<!-- Huggingface main inport  -->
+<script type="importmap">
+   {"imports": {"@huggingface/inference": "https://cdn.jsdelivr.net/npm/@huggingface/inference@1.7.1/+esm"}}
+</script>
+
+
+<h6> version 0.5.0-20</h6>
+<h3 align=center>Hugginface single page Javascript Open Souce Chat</h3>
+
+Prompt:<br>
+<textarea id="myPrompt" rows=10 cols=70>What is a large language model</textarea> <br>
+ <a href="https://huggingface.co/settings/tokens"> Token Signup</a>, Token ID (faster): <input type="password" value="" id="myTokenID">  <br>
+ <a href="https://huggingface.co/models?pipeline_tag=text2text-generation&sort=likes"> HF Models at</a>. This Model: <input type="text" size=70 value="OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5" id="myModel">  <br>
+
+
+<input type="button" value="Run Huggingface Chat" onclick="{  
+   launch()
+}"> 
+
+<input type=button value="Convert MD to HTML" onClick="{
+   let converter = new showdown.Converter()
+   document.getElementById('myOutput').innerHTML    = converter.makeHtml(document.getElementById('myOutput').textContent)
+}"><br>
+Output: <span id="myOutput">...</span> <br>
+
+
+
+
+<script type="module">
+import { HfInference } from "@huggingface/inference";
+let running = false;
+async function launch() {
+if (running) {return;}
+  running = true;
+  try {
+    const hf = new HfInference(document.getElementById("myTokenID").value.trim() || undefined);
+	  
+    // models at         https://huggingface.co/models?pipeline_tag=text2text-generation&sort=likes
+    // some need a paid account
+    //const model =  "OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5"; //meta-llama/Llama-2-70b-chat-hf";  //document.getElementById("model").value.trim();  // set this
+    const model =  document.getElementById("myModel").value.trim();  // set the model
+    //document.getElementById("myModel").innerHTML = `<b>${model}</b>`;
+		
+    const prompt = document.getElementById("myPrompt").value.trim();
+    document.getElementById("myOutput").textContent  = "";
+    for await (const output of hf.textGenerationStream({model,inputs: prompt,parameters: { max_new_tokens: 250 }}, {use_cache: false})) {
+      document.getElementById("myOutput").textContent  += output.token.text;
+    }
+  } catch (err) {
+      alert("Error: " + err.message);
+  } 
+    finally {running = false;}
+  }
+  window.launch = launch;
+</script>
