@@ -1,0 +1,107 @@
+
+<!-- helps to convert markdown output from the chat into HTML -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.js"></script> 
+
+<!-- polyfill for firefox + import maps   
+<script src="https://unpkg.com/es-module-shims@1.7.0/dist/es-module-shims.js"></script> 
+-->
+
+<!-- Huggingface main inport  -->
+<script type="importmap">
+   {"imports": {"@huggingface/inference": "https://cdn.jsdelivr.net/npm/@huggingface/inference@1.7.1/+esm"}}
+</script>
+
+<body onload="{
+   myStorage = localStorage.getItem('myStoredToken')
+   if(myStorage  != null){
+      document.getElementById('myTokenID').value = myStorage 
+    }
+}">
+<h6> version 0.7.3-34</h6>
+<h3 align=center>Hugginface single page Javascript Open Souce Chat</h3>
+
+Prompt:<input type="button" value="Clear Prompt" onclick="{  
+    document.getElementById('myPromptAndInput').value = ''
+}"> <br>
+<textarea id="myPromptAndInput" rows=10 cols=60>Show how to use an input type button to activate a JavaScript command inline.</textarea> <br>
+ <a href="https://huggingface.co/settings/tokens"> Token Signup</a>, Token ID (faster): <input type="password" value="" id="myTokenID"> 
+<input type="button" value="Store Token Locally" onClick="{
+   localStorage.setItem('myStoredToken', document.getElementById('myTokenID').value)
+   document.getElementById('myOutputHtml').innerHTML = 'Latest Token has been stored containing these last 4 characters: ' +
+       document.getElementById('myTokenID').value.slice(-4)
+}"><br><br>
+ <a href="https://huggingface.co/models?pipeline_tag=text2text-generation&sort=likes"> HF Models at</a>. 
+	This Model: <input type="text" size=50 value="OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5" id="myModel">  <br>
+
+
+<input type="button" value="Run Huggingface Chat" style="background-color:green;" onclick="{  
+   launch()
+}"> 
+
+<input type=button value="Convert Chat Markdown to HTML" onClick="{
+   let converter = new showdown.Converter()
+   document.getElementById('myOutputHtml').innerHTML  = converter.makeHtml(document.getElementById('myPromptAndInput').value)
+}"><br>
+HTML Output: <span id="myOutputHtml">...</span> <br>
+	
+temp:<input type="text" id="myParamTemp" value="0.9" size="4" placeholder="0.95" title="temperature: 0.1=random, default 0.9=precise" >
+, top_p:<input type="text" id="myParamTopP" value="0.95" size="4" placeholder="0.95" title="top_p: default 0.95" >
+, rep pen:<input type="text" id="myParamRepetitionPenalty" value="1.2" size="4" placeholder="0.95" title="repetition_penalty: default 1.2" >
+, top_k:<input type="text" id="myParamTopK" value="50" size="4" placeholder="0.95" title="top_k: default 50" >
+, truncate:<input type="text" id="myParamTruncate" value="1000" size="4" placeholder="0.95" title="truncate: default 1000 " >
+, max_new_tokens:<input type="text" id="myParamMaxNewTokens" value="1024" size="4" placeholder="1024" title="max_new_tokens: default 250" >
+
+	
+<br><br>
+By Jeremy Ellis LinkedIn: <a href="https://ca.linkedin.com/in/jeremy-ellis-4237a9bb"></a><br>
+My hugChat github at <a href="https://github.com/hpssjellis/my-examples-of-huggingfacejs/tree/main/public/chat">https://github.com/hpssjellis/my-examples-of-huggingfacejs/tree/main/public/chat</a><br>
+	Use at your own Risk!<br>
+	
+
+
+<script type="module">
+import { HfInference } from "@huggingface/inference";
+let running = false;
+async function launch() {
+if (running) {return;}
+  running = true;
+  try {
+    const hf = new HfInference(document.getElementById("myTokenID").value.trim() || undefined);
+	  
+    // models at         https://huggingface.co/models?pipeline_tag=text2text-generation&sort=likes
+    // some need a paid account
+    //const model =  "OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5"; //meta-llama/Llama-2-70b-chat-hf";  //document.getElementById("model").value.trim();  // set this
+    const model =  document.getElementById("myModel").value.trim();  // set the model
+    //document.getElementById("myModel").innerHTML = `<b>${model}</b>`;
+		
+    const prompt = document.getElementById("myPromptAndInput").value.trim();
+    document.getElementById("myOutputHtml").textContent  = "";
+    for await (const output of hf.textGenerationStream({model,inputs: prompt,parameters: { 
+	    temperature: parseFloat(document.getElementById("myParamTemp").value),
+	    top_p: parseFloat(document.getElementById("myParamTopP").value),
+	    repetition_penalty: parseFloat(document.getElementById("myParamRepetitionPenalty").value),
+	    top_k: parseFloat(document.getElementById("myParamTopK").value),
+	    truncate: parseFloat(document.getElementById("myParamTruncate").value),
+	    max_new_tokens: parseFloat(document.getElementById("myParamMaxNewTokens").value),
+       }}, {use_cache: false})) {
+      document.getElementById("myPromptAndInput").value += output.token.text;
+     // document.getElementById("myOutputHtml").textContent  += output.token.text;
+    }
+  } catch (err) {
+      alert("Error: " + err.message);
+  } 
+    finally {running = false;}
+  }
+  window.launch = launch;
+
+/*
+      "temperature": 0.9,           // control the randomness of predictions
+      "top_p": 0.95,                    // control the range of tokens based on their cumulative probability
+      "repetition_penalty": 1.2,   // discounts the probability of tokens that already appeared 
+      "top_k": 50,                       // top list of number of words to choose from
+      "truncate": 1000,               // ?????
+      "max_new_tokens": 1024
+
+*/
+	
+</script>
