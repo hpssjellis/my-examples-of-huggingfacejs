@@ -1,0 +1,282 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+html {
+  scroll-behavior: smooth;
+}
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set a background color */
+body {
+  background-color: #f4f4f4;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.navbar-title {
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+}
+
+.navbar-nav li {
+  margin-right: 15px;
+}
+
+.navbar-nav li:last-child {
+  margin-right: 0;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-link:hover {
+  color: #007bff;
+}
+
+/* Hero section styles */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #007bff;
+  color: #fff;
+  padding: 60px;
+  box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.2);
+  height: 100vh;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-title {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero-description {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.hero-image {
+  max-width: 50%;
+  height: auto;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #0056b3; /* Blue background color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.cta-button:hover {
+  background-color: #002f61; /* Darker blue background color on hover */
+}
+
+/* Alert box styles */
+.alert-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+
+.alert {
+  background-color: #f5f5d8; /* Light yellow background */
+  border: 1px solid #ffcc00; /* Border color for emphasis */
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.alert-title {
+  font-size: 24px;
+  color: #ff0000; /* Red color for warning */
+  margin-bottom: 10px;
+}
+
+.alert-message {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.alert-button {
+  background-color: #ff0000; /* Red color for button */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.alert-button:hover {
+  background-color: #cc0000; /* Darker red color on hover */
+}
+
+/* New News Alert styles */
+.new-alert {
+  display: flex;
+  justify-content: center;
+  background-color: #007bffce; /* Blue background */
+  color: #fff;
+  padding: 20px;
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+
+.new-alert-content {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.new-alert-message {
+  font-size: 18px;
+  margin-right: 20px;
+  padding-top: 20px;
+}
+
+.new-alert-link {
+  background-color: #0056b3; /* Darker blue for link button */
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.new-alert-link:hover {
+  background-color: #003f80; /* Darker blue on hover */
+}
+
+/* Center the content */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header styles */
+.header {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 36px;
+  color: #333;
+}
+
+/* List styles */
+.list {
+  margin-bottom: 40px;
+  width: 100%;
+  list-style: none;
+}
+
+.list h4 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.list ul {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.list ol {
+  padding-left: 20px;
+}
+
+.list li {
+  display: flex;
+  color: #555;
+  margin-bottom: 5px;
+  padding-top: 2px;
+}
+
+.list li p {
+  margin-left: 20px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.list li a {
+  font-size: 20px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.list li a::after {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+  content: " |";
+}
+
+/* Add some hover effects */
+.list li:hover {
+  color: #007bff;
+  cursor: pointer;
+}
+
+/* Footer styles */
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #ccc;
+  width: 100%;
+}
+
+.footer p {
+  font-size: 16px;
+  color: #777;
+}
+
+/* Media queries for responsive design */
+@media screen and (max-width: 768px) {
+  .list h2 {
+    font-size: 20px;
+  }
+
+  .list li {
+    font-size: 16px;
+  }
+}

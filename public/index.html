@@ -1,134 +1,368 @@
-<h2 align=center>Hugginface.js as static webpages</h2>
-
-
-
-<li><a href="https://github.com/hpssjellis/my-examples-of-huggingfacejs">This github at https://github.com/hpssjellis/my-examples-of-huggingfacejs</a>
-<li>This website index full link at <br> <a href="https://hpssjellis.github.io/my-examples-of-huggingfacejs/public/index.html">https://hpssjellis.github.io/my-examples-of-huggingfacejs/public/index.html</a>
-
-  Watch out for limits. Basically on a small model I am getting about 20 web page refreshes and then I need a one hour gap. <br>
-  If you are getting hit by limits. right-click--> view source and put the page on your own site to see it work. Strange but I am 
-  even having success from my own harddrive doesn't even seem to need to be a "https" site.<br><br>
-  
-  
-  
-  
-<h3>July 2023 I have a version of the LLAMA V2 Huggingface Chat working</h3>
-<li></li> <a href="https://huggingface.co/chat">huggingface.co/chat</a> This is the true one
-<li></li> <a href="chat/hugchat00.html">chat/hugchat00.html</a> This is the best version I could get working
-
-  
-  
-  <h1>Start here.</h1>
-  
-<ul>
- <li><a href="hug06-template.html">hug06-template.html</a> A template for most of the pages to come (until I deprecate it)
- <li><a href="hug07-object.html">hug07-object.html</a> Testing image object classification
- <li><a href="hug08-webcam.html">hug08-webcam.html</a> May work on mobile, webcam image data to huggingface with boundingboxes (still has a few issues)
-
-<ul> Text based hugggingface models
-  <li><a href="hug09-00-text.html">hug09-00-text.html</a> Text style MASK using facebook/bart-large-cnn.
-  <li><a href="hug09-01-text.html">hug09-01-text.html</a> Text style summarization using facebook/bart-large-cnn
-  <li><a href="hug09-02-text.html">hug09-02-text.html</a> Text style question answer using deepset/roberta-base-squad2
-  <li><a href="hug02-03.html">hug02-03.html</a> Not sure of the point of this so left it in it's original form    
-  <li><a href="hug09-04-text.html">hug09-04-text.html</a> Text classification using distilbert-base-uncased-finetuned-sst-2-english
-   
-  <li><a href="hug09-05-text.html">hug09-05-text.html</a> Text Generation using GPT-2
-  <li><a href="hug09-06-text.html">hug09-06-text.html</a> Token Classification using dbmdz/bert-large-cased-finetuned-conll03-english
-  <li><a href="hug09-07-text.html">hug09-07-text.html</a> Text translation program from English to German (I think)
-  <li><a href="hug09-08-text.html">hug09-08-text.html</a> Text zero shot classification using facebook/bart-large-mnli
-  <li><a href="hug09-09-text.html">hug09-09-text.html</a> Conversational using microsoft/DialoGPT-large
-  <li><a href="hug09-10-text.html">hug09-10-text.html</a> Text Feacture Extraction using sentence-transformers/paraphrase-xlm-r-multilingual-v1
-    
-</ul>  
-<ul> Audio files
-  <li><a href="hug10-11-audio.html">hug10-11-audio.html</a> Now testing audio. AutoClassification
-  <li><a href="hug10-12-audio.html">hug10-12-audio.htm</a> Audio classification
-</ul>
-
-  <ul> Image Classification Examples
-<li><a href="hug11-13-image.html">hug11-13-image.html</a> Image classification using google/vit-base-patch16-224
-<li><a href="hug11-14-image.html">hug11-14-image.html</a> Object detection and location (same as my first attempts), using facebook/detr-resnet-50
-<li><a href="hug11-15-image.html">hug11-15-image.html</a> Segementation of objects, just gives the data using facebook/detr-resnet-50-panoptic
-<li><a href="hug11-15b.html">hug11-15b.html</a> Segementation of objects, this shows the objects in different colors using facebook/detr-resnet-50-panoptic and d3.js
-<li><a href="...">..</a>
-  </ul>
-Text to Image  
-<li><a href="hug16-text-to-image.html">hug16-text-to-image.html</a>  Testing text to image. This is really cool, takes a while but great results.
-</ul>  
-
-  
-  <br>  <br>  <br>  <br>  <br>  <br>  <br>
-  <h1>How I got there.</h1>
-  
-  
-  
-    
-Most of this page is based on this code<br>
-<textarea rows=20 cols=120 NOWRAP>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <title>Hugginface.js as static webpages</title>
+  </head>
   <body>
-    version 0.0.1<br>
-    View the console at ctrl-shift-i (for window or linux)<br>
-    <script type="module">
-        import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
-        const TOKEN = ""
-        let hf = new HfInference(TOKEN)
+    <nav class="navbar">
+      <div class="navbar-title">By Jeremy Ellis, Rocksetta</div>
+      <ul class="navbar-nav">
+        <li>
+          <a
+            href="https://github.com/hpssjellis/my-examples-of-huggingfacejs"
+            class="navbar-link"
+            target="_blank"
+            >Github</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://hpssjellis.github.io/my-examples-of-huggingfacejs/public/index.html"
+            class="navbar-link"
+            target="_blank"
+            >Index</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <section class="hero">
+      <div class="hero-text">
+        <h1 class="hero-title">Hugginface.js as Static Webpages</h1>
+        <a href="#mainTitle" class="cta-button">Learn More</a>
+      </div>
+      <img
+        src="./styles/hero-image.png"
+        alt="Machine Learning"
+        class="hero-image"
+      />
+    </section>
+    <main class="container">
+      <div class="alert-container">
+        <div class="alert">
+          <h2 class="alert-title">Watch out for limits!</h2>
+          <p class="alert-message">
+            Basically on a small model I am getting about 20 web page refreshes
+            and then I need a one hour gap...
+          </p>
+          <p class="alert-message">
+            If you are getting hit by limits. Right-click-> view source and put
+            the page on your own site to see it work. Strange but I am even
+            having success from my own harddrive doesn't even seem to need to be
+            a "https" site.
+          </p>
+        </div>
+      </div>
 
-        const imgBlob = await fetch("https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png")
-            .then((res) => res.blob())
-        const objectDetectionRes = await hf.objectDetection({
-            data: imgBlob,
-            model: "facebook/detr-resnet-50"
-        })
-        console.log(objectDetectionRes)
-    </script>
+      <div class="new-alert">
+        <div class="new-alert-content">
+          <h2>
+            July 2023 I have a version of the LLAMA V2 Huggingface Chat working
+          </h2>
+          <p class="new-alert-message">
+            <a class="new-alert-link" href="https://huggingface.co/chat"
+              >huggingface.co/chat</a
+            >
+            This is the true one
+          </p>
+          <p class="new-alert-message">
+            <a class="new-alert-link" href="chat/hugchat00.html"
+              >chat/hugchat00.html</a
+            >
+            This is the best version I could get working
+          </p>
+        </div>
+      </div>
+
+      <h3 id="mainTitle" class="header">Start here</h3>
+
+      <ul class="list">
+        <li>
+          <a href="hug06-template.html">hug06-template.html</a>
+          <p>A template for most of the pages to come (until I deprecate it)</p>
+        </li>
+        <li>
+          <a href="hug07-object.html">hug07-object.html</a>
+          <p>Testing image object classification</p>
+        </li>
+        <li>
+          <a href="hug08-webcam.html">hug08-webcam.html</a>
+          <p>
+            May work on mobile, webcam image data to huggingface with
+            boundingboxes (still has a few issues)
+          </p>
+        </li>
+
+        <h4>Text based huggingface models</h4>
+        <ul>
+          <li>
+            <a href="hug09-00-text.html">hug09-00-text.html</a>
+            <p>Text style MASK using facebook/bart-large-cnn.</p>
+          </li>
+          <li>
+            <a href="hug09-01-text.html">hug09-01-text.html</a>
+            <p>Text style summarization using facebook/bart-large-cnn</p>
+          </li>
+          <li>
+            <a href="hug09-02-text.html">hug09-02-text.html</a>
+            <p>Text style question answer using deepset/roberta-base-squad2</p>
+          </li>
+          <li>
+            <a href="hug02-03.html">hug02-03.html</a>
+            <p>
+              Not sure of the point of this so left it in it's original form
+            </p>
+          </li>
+          <li>
+            <a href="hug09-04-text.html">hug09-04-text.html</a>
+            <p>
+              Text classification using
+              distilbert-base-uncased-finetuned-sst-2-english
+            </p>
+          </li>
+          <li>
+            <a href="hug09-05-text.html">hug09-05-text.html</a>
+            <p>Text Generation using GPT-2</p>
+          </li>
+          <li>
+            <a href="hug09-06-text.html">hug09-06-text.html</a>
+            <p>
+              Token Classification using
+              dbmdz/bert-large-cased-finetuned-conll03-english
+            </p>
+          </li>
+          <li>
+            <a href="hug09-07-text.html">hug09-07-text.html</a>
+            <p>Text translation program from English to German (I think)</p>
+          </li>
+          <li>
+            <a href="hug09-08-text.html">hug09-08-text.html</a>
+            <p>Text zero shot classification using facebook/bart-large-mnli</p>
+          </li>
+          <li>
+            <a href="hug09-09-text.html">hug09-09-text.html</a>
+            <p>Conversational using microsoft/DialoGPT-large</p>
+          </li>
+          <li>
+            <a href="hug09-10-text.html">hug09-10-text.html</a>
+            <p>
+              Text Feacture Extraction using
+              sentence-transformers/paraphrase-xlm-r-multilingual-v1
+            </p>
+          </li>
+        </ul>
+        <h4>Audio files</h4>
+        <ul>
+          <li>
+            <a href="hug10-11-audio.html">hug10-11-audio.html</a>
+            <p>Now testing audio. AutoClassification</p>
+          </li>
+          <li>
+            <a href="hug10-12-audio.html">hug10-12-audio.htm</a>
+            <p>Audio classification</p>
+          </li>
+        </ul>
+        <h4>Image Classification Examples</h4>
+        <ul>
+          <li>
+            <a href="hug11-13-image.html">hug11-13-image.html</a>
+            <p>Image classification using google/vit-base-patch16-224</p>
+          </li>
+          <li>
+            <a href="hug11-14-image.html">hug11-14-image.html</a>
+            <p>
+              Object detection and location (same as my first attempts), using
+              facebook/detr-resnet-50
+            </p>
+          </li>
+          <li>
+            <a href="hug11-15-image.html">hug11-15-image.html</a>
+            <p>
+              Segementation of objects, just gives the data using
+              facebook/detr-resnet-50-panoptic
+            </p>
+          </li>
+          <li>
+            <a href="hug11-15b.html">hug11-15b.html</a>
+            <p>
+              Segementation of objects, this shows the objects in different
+              colors using facebook/detr-resnet-50-panoptic and d3.js
+            </p>
+          </li>
+        </ul>
+        <h4>Text to Image</h4>
+        <ul>
+          <li>
+            <a href="hug16-text-to-image.html">hug16-text-to-image.html</a>
+            <p>
+              Testing text to image. This is really cool, takes a while but
+              great results.
+            </p>
+          </li>
+        </ul>
+      </ul>
+
+      <h3 class="header">How I got there.</h3>
+
+      <p>Most of this page is based on this code</p>
+      <textarea rows="20" cols="150" NOWRAP>
+				&lt;html&gt;
+					&lt;body&gt;
+					version 0.0.1<br>
+					View the console at ctrl-shift-i (for window or linux)<br>
+						&lt;script type="module"&gt;
+							import { HfInference } from 'https://cdn.skypack.dev/@huggingface/inference@1.5.2';
+							const TOKEN = ""
+							let hf = new HfInference(TOKEN)
+
+							const imgBlob = await fetch("https://raw.githubusercontent.com/huggingface/huggingface.js/main/packages/inference/test/cats.png")
+								.then((res) => res.blob())
+							const objectDetectionRes = await hf.objectDetection({
+								data: imgBlob,
+								model: "facebook/detr-resnet-50"
+							})
+							console.log(objectDetectionRes)
+						&lt;/script&gt;
+					&lt;/body&gt;
+				&lt;/html&gt;
+			</textarea
+      >
+
+      <h3 class="header">Progress</h3>
+
+      <ul class="list">
+        <li>
+          <a href="hug01.html">hug01.html</a>
+          <p>
+            First working HuggingFaceJS see console. This does an image
+            classification so I should be find with those.
+          </p>
+        </li>
+        <li>
+          <a href="hug01-await.html">hug01-await.html</a>
+          <p>promise to await</p>
+        </li>
+        <li>
+          <a href="hug02.html">hug02.html</a>
+          <p>
+            Trying the
+            <a
+              href="https://github.com/huggingface/huggingface.js/blob/main/packages/inference/README.md"
+              >inference examples</a
+            >
+            and massively messing up the free rate limit. LOL. Don't run this
+            example as it destroys your un-token rate. The first example
+            hug01.html you can refresh the page about 20 times per hour without
+            a token See below hug03-enter-token.html using a free token. I will
+            test how better the rate is.
+          </p>
+        </li>
+
+        <h4>So let's break this down into smaller attempts</h4>
+        <ol>
+          <li>
+            <a href="hug02-01.html">hug02-01.html</a>
+            <p>model: facebook/bart-large-cnn</p>
+          </li>
+          <li>
+            <a href="hug02-02.html">hug02-02.html</a>
+            <p>model: deepset/roberta-base-squad2</p>
+          </li>
+          <li>
+            <a href="hug02-03.html">hug02-03.html</a>
+            <p>model: google/tapas-base-finetuned-wtq</p>
+          </li>
+          <li>
+            <a href="hug02-04.html">hug02-04.html</a>
+            <p>model: distilbert-base-uncased-finetuned-sst-2-english</p>
+          </li>
+          <li>
+            <a href="hug02-05.html">hug02-05.html</a>
+            <p>model: gpt2</p>
+          </li>
+          <li>
+            <a href="hug02-06.html">hug02-06.html</a>
+            <p>model: dbmdz/bert-large-cased-finetuned-conll03-english</p>
+          </li>
+          <li>
+            <a href="hug02-07.html">hug02-07.html</a>
+            <p>model: t5-base</p>
+          </li>
+          <li>
+            <a href="hug02-08.html">hug02-08.html</a>
+            <p>model: facebook/bart-large-mnli</p>
+          </li>
+          <li>
+            <a href="hug02-09.html">hug02-09.html</a>
+            <p>model: microsoft/DialoGPT-large</p>
+          </li>
+          <li>
+            <a href="hug02-10.html">hug02-10.html</a>
+            <p>model: sentence-transformers/paraphrase-xlm-r-multilingual-v1</p>
+          </li>
+          <li>
+            <a href="hug02-11.html">hug02-11.html</a>
+            <p>model: facebook/wav2vec2-large-960h-lv60-self</p>
+          </li>
+          <li>
+            <a href="hug02-12.html">hug02-12.html</a>
+            <p>model: superb/hubert-large-superb-er</p>
+          </li>
+          <li>
+            <a href="hug02-13.html">hug02-13.html</a>
+            <p>model: google/vit-base-patch16-224</p>
+          </li>
+          <li>
+            <a href="hug02-14.html">hug02-14.html</a>
+            <p>model: facebook/detr-resnet-50</p>
+          </li>
+          <li>
+            <a href="hug02-15.html">hug02-15.html</a>
+            <p>model: facebook/detr-resnet-50-panoptic</p>
+          </li>
+          <li>
+            <a href="hug02-16.html">hug02-16.html</a>
+            <p>model: stabilityai/stable-diffusion-2</p>
+          </li>
+        </ol>
+        <li>
+          <a href="hug03-enter-token.html">hug03-enter-token.html</a>
+          <p>
+            Let's try a way to enter your free token from
+            <a href="https://huggingface.co/settings/tokens"
+              >https://huggingface.co/settings/tokens</a
+            >
+            to get a better limit
+          </p>
+        </li>
+        <li>
+          <a href="hug04-local-token-storage.html"
+            >hug04-local-token-storage.html</a
+          >
+          <p>
+            Local storage seems to work, not really secure. NOTE: make it blank
+            and store it to get the regular rate.
+          </p>
+        </li>
+        <li>
+          <a href="hug05-class.html">hug05-class.html</a>
+          <p>Looking at the main HFInference class. TESTING not yet working</p>
+        </li>
+      </ul>
+    </main>
+    <footer class="footer">
+      My Main Github
+      <a href="https://github.com/hpssjellis/my-examples-of-huggingfacejs">
+        here
+      </a>
+      and the index of demos
+      <a href="index.html">here</a>
+      <p>
+        By <a href="https://twitter.com/rocksetta">@rocksetta</a> use at your
+        own risk!
+      </p>
+    </footer>
   </body>
-</html>  
-</textarea>
-<br>
-<br>
-  
-
-  <hr>
-  
-  
-  
-<ul>
-<li><a href="hug01.html">hug01.html</a> First working HuggingFaceJS see console. This does an image classification so I should be find with those.
-<li><a href="hug01-await.html">hug01-await.html</a> promise to await
-<li><a href="hug02.html">hug02.html</a> Trying the <a href="https://github.com/huggingface/huggingface.js/blob/main/packages/inference/README.md">inference examples</a> 
-  and massively messing up the free rate limit. LOL. Don't run this example as it destroys your un-token rate. The first example hug01.html you can refresh the page about 20 times per hour without a token
-See below hug03-enter-token.html using a free token. I will test how better the rate is.<br>
-    
-  
-<ol> So let's break this down into smaller attempts
-
-   <li><a href="hug02-01.html">hug02-01.html</a> model: facebook/bart-large-cnn
-   <li><a href="hug02-02.html">hug02-02.html</a> model: deepset/roberta-base-squad2
-   <li><a href="hug02-03.html">hug02-03.html</a> model: google/tapas-base-finetuned-wtq
-   <li><a href="hug02-04.html">hug02-04.html</a> model: distilbert-base-uncased-finetuned-sst-2-english
-   <li><a href="hug02-05.html">hug02-05.html</a> model: gpt2
-   <li><a href="hug02-06.html">hug02-06.html</a> model: dbmdz/bert-large-cased-finetuned-conll03-english
-   <li><a href="hug02-07.html">hug02-07.html</a> model: t5-base
-   <li><a href="hug02-08.html">hug02-08.html</a> model: facebook/bart-large-mnli
-   <li><a href="hug02-09.html">hug02-09.html</a> model: microsoft/DialoGPT-large
-   <li><a href="hug02-10.html">hug02-10.html</a> model: sentence-transformers/paraphrase-xlm-r-multilingual-v1
-   <li><a href="hug02-11.html">hug02-11.html</a> model: facebook/wav2vec2-large-960h-lv60-self
-   <li><a href="hug02-12.html">hug02-12.html</a> model: superb/hubert-large-superb-er
-   <li><a href="hug02-13.html">hug02-13.html</a> model: google/vit-base-patch16-224
-   <li><a href="hug02-14.html">hug02-14.html</a> model: facebook/detr-resnet-50
-   <li><a href="hug02-15.html">hug02-15.html</a> model: facebook/detr-resnet-50-panoptic
-   <li><a href="hug02-16.html">hug02-16.html</a> model: stabilityai/stable-diffusion-2
-</ol> 
-<li><a href="hug03-enter-token.html">hug03-enter-token.html</a>Let's try a way to enter your free token from <a href="https://huggingface.co/settings/tokens">https://huggingface.co/settings/tokens</a> to get a better limit
-<li><a href="hug04-local-token-storage.html">hug04-local-token-storage.html</a>  Local storage seems to work, not really secure. NOTE: make it blank and store it to get the regular rate.
-<li><a href="hug05-class.html">hug05-class.html</a> Looking at the main HFInference class. TESTING not yet working
-<hr>
-
-  
-  
-  
-    <br><br>
-  
-  My Main Github <a href="https://github.com/hpssjellis/my-examples-of-huggingfacejs">here</a> and the index of demos <a href="index.html">here<a/>  <br>
-  By <a href="https://twitter.com/rocksetta">@rocksetta<a/> use at your own risk!<br>
+</html>
