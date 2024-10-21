@@ -1,10 +1,11 @@
 <h2 align=center>Hugginface.js as static webpages</h2>
 
 
-
-<li><a href="https://github.com/hpssjellis/my-examples-of-huggingfacejs">This github at https://github.com/hpssjellis/my-examples-of-huggingfacejs</a>
-<li>This website index full link at <br> <a href="https://hpssjellis.github.io/my-examples-of-huggingfacejs/public/index.html">https://hpssjellis.github.io/my-examples-of-huggingfacejs/public/index.html</a><br><br>
-
+<ul>
+   <li><a href="https://github.com/hpssjellis/my-examples-of-huggingfacejs">This github at https://github.com/hpssjellis/my-examples-of-huggingfacejs</a>
+   <li>This website index full link at <br> <a href="https://hpssjellis.github.io/my-examples-of-huggingfacejs/public/index.html">https://hpssjellis.github.io/my-examples-of-huggingfacejs/public/index.html</a><br><br>
+</li>
+  
   Watch out for limits. Basically on a small model I am getting about 20 web page refreshes and then I need a one hour gap. <br>
   If you are getting hit by limits. right-click--> view source and put the page on your own site to see it work. Strange but I am 
   even having success from my own harddrive doesn't even seem to need to be a "https" site.<br><br>
@@ -15,27 +16,30 @@ Here is my new set of demos
 <ul>
   <li> <a href="">...</a> 
   <li> <a href="">...</a> 
-</li>
+</ul>
   
   
   
 <h3>July 2023 I have a version of the LLAMA V2 Huggingface Chat working</h3>
+  
 <ul>
   <li> <a href="https://huggingface.co/chat">huggingface.co/chat</a> This is the true hugginface one (not by me)
   <li> <a href="chat/hugchat00.html">chat/hugchat00.html</a> This is the best version I could get working
-</li>
+</ul>
   
   
-  <h1>Start here.</h1>
+<The original List of examples done my way. (SPA's) Single File Applications</h1>
+  Meaning: Webpages created using one file. Much easier to put into ChatGPT and make changes or add CSS<br><br>
   
 <ul>
  <li><a href="hug06-template.html">hug06-template.html</a> A template for most of the pages to come (until I deprecate it)
  <li><a href="hug07-object.html">hug07-object.html</a> Testing image object classification
  <li><a href="hug08-webcam.html">hug08-webcam.html</a> May work on mobile, webcam image data to huggingface with boundingboxes (still has a few issues)
- </li>
 
+</ul>
   
-<ul> Text based hugggingface models
+<h3> Text based hugggingface models </h3>
+<ul>
   <li><a href="hug09-00-text.html">hug09-00-text.html</a> Text style MASK using facebook/bart-large-cnn.
   <li><a href="hug09-01-text.html">hug09-01-text.html</a> Text style summarization using facebook/bart-large-cnn
   <li><a href="hug09-02-text.html">hug09-02-text.html</a> Text style question answer using deepset/roberta-base-squad2
@@ -49,20 +53,28 @@ Here is my new set of demos
   <li><a href="hug09-09-text.html">hug09-09-text.html</a> Conversational using microsoft/DialoGPT-large
   <li><a href="hug09-10-text.html">hug09-10-text.html</a> Text Feacture Extraction using sentence-transformers/paraphrase-xlm-r-multilingual-v1
     
-</ul>  
-<ul> Audio files
+</ul> 
+
+  
+<h3> Audio files</h3>
+<ul>
   <li><a href="hug10-11-audio.html">hug10-11-audio.html</a> Now testing audio. AutoClassification
   <li><a href="hug10-12-audio.html">hug10-12-audio.htm</a> Audio classification
 </ul>
 
-  <ul> Image Classification Examples
+  
+  <h3>Image Classification Examples</h3>
+<ul>
 <li><a href="hug11-13-image.html">hug11-13-image.html</a> Image classification using google/vit-base-patch16-224
 <li><a href="hug11-14-image.html">hug11-14-image.html</a> Object detection and location (same as my first attempts), using facebook/detr-resnet-50
 <li><a href="hug11-15-image.html">hug11-15-image.html</a> Segementation of objects, just gives the data using facebook/detr-resnet-50-panoptic
 <li><a href="hug11-15b.html">hug11-15b.html</a> Segementation of objects, this shows the objects in different colors using facebook/detr-resnet-50-panoptic and d3.js
 <li><a href="...">..</a>
   </ul>
-Text to Image  
+
+  
+<h3>Text to Image  </h3>
+  <ul>
 <li><a href="hug16-text-to-image.html">hug16-text-to-image.html</a>  Testing text to image. This is really cool, takes a while but great results.
 </ul>  
 
@@ -109,7 +121,7 @@ Most of this page is based on this code<br>
 <li><a href="hug02.html">hug02.html</a> Trying the <a href="https://github.com/huggingface/huggingface.js/blob/main/packages/inference/README.md">inference examples</a> 
   and massively messing up the free rate limit. LOL. Don't run this example as it destroys your un-token rate. The first example hug01.html you can refresh the page about 20 times per hour without a token
 See below hug03-enter-token.html using a free token. I will test how better the rate is.<br>
-    
+</li>    
   
 <ol> So let's break this down into smaller attempts
 
@@ -130,6 +142,7 @@ See below hug03-enter-token.html using a free token. I will test how better the 
    <li><a href="hug02-15.html">hug02-15.html</a> model: facebook/detr-resnet-50-panoptic
    <li><a href="hug02-16.html">hug02-16.html</a> model: stabilityai/stable-diffusion-2
 </ol> 
+  
 <li><a href="hug03-enter-token.html">hug03-enter-token.html</a>Let's try a way to enter your free token from <a href="https://huggingface.co/settings/tokens">https://huggingface.co/settings/tokens</a> to get a better limit
 <li><a href="hug04-local-token-storage.html">hug04-local-token-storage.html</a>  Local storage seems to work, not really secure. NOTE: make it blank and store it to get the regular rate.
 <li><a href="hug05-class.html">hug05-class.html</a> Looking at the main HFInference class. TESTING not yet working
