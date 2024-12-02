@@ -1,0 +1,91 @@
+<!-- Include showdown.js for Markdown to HTML conversion -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.js"></script>
+
+<!-- Import map for Huggingface inference -->
+<script type="importmap">
+   {"imports": {"@huggingface/inference": "https://cdn.jsdelivr.net/npm/@huggingface/inference@1.7.1/+esm"}}
+</script>
+
+<body onload="{
+   myStorage = localStorage.getItem('myStoredToken')
+   if(myStorage != null){
+      document.getElementById('myTokenID').value = myStorage 
+    }
+}">
+<h6> version 0.7.4-37</h6>
+<h3 align="center">Huggingface Single Page JavaScript Open Source Chat</h3>
+
+<!-- Div with specific information -->
+<div id="myInDiv">
+   <p>This is some specific information that will be used to generate questions about quantum computing.</p>
+</div>
+
+<!-- Button to send information from myInDiv to the LLM -->
+<input type="button" value="Generate Questions" onclick="{
+   let info = document.getElementById('myInDiv').innerText;
+   generateQuestions(info);
+}">
+
+<!-- Prompt and input area -->
+Prompt: <input type="button" value="Clear Prompt" onclick="{  
+    document.getElementById('myPromptAndInput').value = ''
+}"> <br>
+<textarea id="myPromptAndInput" rows="10" cols="60">Show how to use an input type button to activate a JavaScript command inline.</textarea> <br>
+<a href="https://huggingface.co/settings/tokens">Token Signup</a>, Token ID (faster): <input type="password" value="" id="myTokenID"> 
+<input type="button" value="Store Token Locally" onclick="{
+   localStorage.setItem('myStoredToken', document.getElementById('myTokenID').value)
+   document.getElementById('myOutputHtml').innerHTML = 'Latest Token has been stored containing these last 4 characters: ' +
+       document.getElementById('myTokenID').value.slice(-4)
+}"><br><br>
+<a href="https://huggingface.co/models?pipeline_tag=text2text-generation&sort=likes">HF Models at</a>. 
+This Model: <input type="text" size="50" value="OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5" id="myModel">  <br>
+
+<input type="button" value="Run Huggingface Chat" style="background-color:green;" onclick="{  
+   launch()
+}"> 
+
+<input type="button" value="Convert Chat Markdown to HTML" onclick="{
+   let converter = new showdown.Converter();
+   document.getElementById('myOutputHtml').innerHTML = converter.makeHtml(document.getElementById('myPromptAndInput').value);
+}"><br>
+HTML Output: <span id="myOutputHtml">...</span> <br>
+
+<!-- Parameters for the Huggingface model -->
+temp: <input type="text" id="myParamTemp" value="0.9" size="4" placeholder="0.9" title="temperature: 0.1=random, default 0.9=precise">
+, top_p: <input type="text" id="myParamTopP" value="0.95" size="4" placeholder="0.95" title="top_p: default 0.95, percent success expected for next token to output">
+, repetition penalty: <input type="text" id="myParamRepetitionPenalty" value="1.2" size="4" placeholder="1.2" title="repetition_penalty: lower more repetition, default 1.2">
+, top_k: <input type="text" id="myParamTopK" value="50" size="4" placeholder="50" title="top_k: default 50, number of tokens to consider">
+, truncate: <input type="text" id="myParamTruncate" value="1024" size="4" placeholder="1024" title="truncate: default 1000, weird results if a low number, works between 1 and 1024">
+, max_new_tokens: <input type="text" id="myParamMaxNewTokens" value="2000" size="4" placeholder="2000" title="max_new_tokens: amount printed, default 250, max=~2000">
+
+<script>
+async function generateQuestions(info) {
+   const prompt = `Generate HTML code for a set of multiple-choice questions based on the following information:
+${info}
+
+Each question should have four options, and the correct answer should be indicated. Also, provide a list of the questions and their correct answers.`;
+
+   const response = await fetch('https://api-inference.huggingface.co/models/OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5', {
+      method: 'POST',
+      headers: {
+         'Authorization': `Bearer ${localStorage.getItem('myStoredToken')}`,
+         'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+         inputs: prompt,
+         parameters: {
+            temperature: parseFloat(document.getElementById('myParamTemp').value),
+            top_p: parseFloat(document.getElementById('myParamTopP').value),
+            repetition_penalty: parseFloat(document.getElementById('myParamRepetitionPenalty').value),
+            top_k: parseInt(document.getElementById('myParamTopK').value),
+            truncate: parseInt(document.getElementById('myParamTruncate').value),
+            max_new_tokens: parseInt(document.getElementById('myParamMaxNewTokens').value)
+         }
+      })
+   });
+
+   const result = await response.json();
+   document.getElementById('myOutputHtml').innerHTML = result.generated_text;
+}
+</script>
+</body>
